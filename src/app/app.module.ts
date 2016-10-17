@@ -14,6 +14,7 @@ import { HttpService }  from './http.service';
 import { PageComponent }    from './page/page.component';
 import { AboutComponent }  from './about/about.component';
 import { ErrorComponent } from './error/error.component';
+import {SeoService} from "./services/SeoService";
 
 @NgModule({
   imports: [
@@ -29,9 +30,10 @@ import { ErrorComponent } from './error/error.component';
     ErrorComponent
   ],
   providers: [
-    appRoutingProviders, 
+    appRoutingProviders,
     {provide: LocationStrategy, useClass: PathLocationStrategy},
-    HttpService
+    HttpService,
+    SeoService
   ],
   bootstrap: [ AppComponent ]
 })
