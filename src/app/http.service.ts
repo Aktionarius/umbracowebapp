@@ -11,4 +11,9 @@ export class HttpService {
       return this.http.get('http://umb.dynamikfabrikken.com/umbraco/api/contentApi/getData?url=' + url)
       .map((response: Response) => response.json());
   }
+
+  getMenu() {
+    return this.http.get("http://umb.dynamikfabrikken.com/umbraco/api/contentApi/getTree")
+      .map(response=>response.json())
+  }
 }

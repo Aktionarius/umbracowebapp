@@ -15,6 +15,7 @@ import { PageComponent }    from './page/page.component';
 import { AboutComponent }  from './about/about.component';
 import { ErrorComponent } from './error/error.component';
 import {SeoService} from "./services/SeoService";
+import {DataParseService} from "./services/DataParseService";
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import {SeoService} from "./services/SeoService";
     appRoutingProviders,
     {provide: LocationStrategy, useClass: PathLocationStrategy},
     HttpService,
-    SeoService
+    SeoService,
+    DataParseService
   ],
   bootstrap: [ AppComponent ]
 })
