@@ -2,6 +2,7 @@
 import {Injectable} from "@angular/core";
 import {Routes, Route} from "@angular/router";
 import {PAGE_ALIAS} from "../constants/pages";
+import {IMenuItem} from "../model/IMenuItem";
 @Injectable()
 export class DataParseService {
 
@@ -15,7 +16,7 @@ export class DataParseService {
     },[])
   }
 
-  parseMenuDataToNav(data):Array<Object> {
+  parseMenuDataToNav(data):Array<IMenuItem> {
     return data.data.reduce((result, currentItem)=>{
       if(currentItem.parentId==-1) {
         return [...result, Object.assign({}, this.mapDataObjectToMenuItem(currentItem), {
@@ -27,7 +28,7 @@ export class DataParseService {
     }, []);
   }
 
-  private getChildItems(id, data) {
+  private getChildItems(id, data):Array<IMenuItem> {
     return data.reduce((result, currentItem)=>{
       if(currentItem.parentId==id && currentItem.navigationHide==false) {
         return [...result, Object.assign({},this.mapDataObjectToMenuItem(currentItem), {
@@ -38,7 +39,7 @@ export class DataParseService {
     }, []);
   }
 
-  private mapDataObjectToMenuItem(object) {
+  private mapDataObjectToMenuItem(object):IMenuItem {
     return {
       path: object.path,
       name: object.name

@@ -16,6 +16,8 @@ import { AboutComponent }  from './about/about.component';
 import { ErrorComponent } from './error/error.component';
 import {SeoService} from "./services/SeoService";
 import {DataParseService} from "./services/DataParseService";
+import {MenuItemComponent} from "./shared/menu/menu.item.component";
+import {MenuComponent} from "./shared/menu/menu.component";
 
 @NgModule({
   imports: [
@@ -28,7 +30,9 @@ import {DataParseService} from "./services/DataParseService";
     AppComponent,
     PageComponent,
     AboutComponent,
-    ErrorComponent
+    ErrorComponent,
+    MenuComponent,
+    MenuItemComponent
   ],
   providers: [
     appRoutingProviders,
