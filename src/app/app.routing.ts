@@ -1,7 +1,7 @@
 import {ModuleWithProviders} from "@angular/core";
 import {Routes, RouterModule} from "@angular/router";
 import {ErrorComponent} from "./error/error.component";
-import {CanActivateRoute} from "./services/CanActivate";
+import {RouteController} from "./services/RouteController";
 import {ContentComponent} from "./content/content.component";
 
 var appRoutes: Routes = [
@@ -9,8 +9,8 @@ var appRoutes: Routes = [
     path: '', component: ContentComponent, children: [{
     path: "**",
     component: ErrorComponent,
-    canActivate: [CanActivateRoute]
-  }], canActivate: [CanActivateRoute], canActivateChild: [CanActivateRoute]
+    canActivate: [RouteController]
+  }], canActivate: [RouteController], canActivateChild: [RouteController]
   },
   {path: '**', component: ErrorComponent}
 ];

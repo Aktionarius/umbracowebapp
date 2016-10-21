@@ -9,7 +9,7 @@ import { LocationStrategy, HashLocationStrategy, PathLocationStrategy} from '@an
 
 import { AppComponent }         from './app.component';
 import { routing, appRoutingProviders }  from './app.routing';
-import { HttpService }  from './http.service';
+import { HttpService }  from './services/http.service';
 
 import { PageComponent }    from './page/page.component';
 import { AboutComponent }  from './about/about.component';
@@ -18,7 +18,7 @@ import {SeoService} from "./services/SeoService";
 import {DataParseService} from "./services/DataParseService";
 import {MenuItemComponent} from "./shared/menu/menu.item.component";
 import {MenuComponent} from "./shared/menu/menu.component";
-import {CanActivateRoute} from "./services/CanActivate";
+import {RouteController} from "./services/RouteController";
 import {ContentComponent} from "./content/content.component";
 
 @NgModule({
@@ -43,9 +43,9 @@ import {ContentComponent} from "./content/content.component";
     HttpService,
     SeoService,
     DataParseService,
-    CanActivateRoute
+    RouteController
   ],
-  entryComponents: [PageComponent, ErrorComponent],
+  entryComponents: [PageComponent, ErrorComponent, AppComponent],
   bootstrap: [ AppComponent ]
 })
 export class AppModule {

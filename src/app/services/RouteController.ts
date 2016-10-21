@@ -1,19 +1,22 @@
 import {
-  CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, CanActivateChild,
-  Resolve
+  CanActivate,
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot,
+  Router,
+  CanActivateChild
 } from "@angular/router";
 import {Observable} from "rxjs";
-import {HttpService} from "../http.service";
+import {HttpService} from "./http.service";
 import {DataParseService} from "./DataParseService";
 import {Injectable} from "@angular/core";
 
 @Injectable()
-export class CanActivateRoute implements CanActivate, CanActivateChild {
+export class RouteController implements CanActivate, CanActivateChild {
 
   isLoaded: boolean = false;
 
   constructor(private http: HttpService, private dataParse: DataParseService, private router: Router) {
-    console.log("constructor")
+
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean>|Promise<boolean>|boolean {
