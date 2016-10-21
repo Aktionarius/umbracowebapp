@@ -47,12 +47,19 @@ export class DataParseService {
   }
 
   private getRouteFromData(data):Route {
+    let path=data.path;
+    if(path[0]=="/") {
+      path=path.slice(1);
+    }
+    if(path[path.length-1]=="/") {
+      path=path.slice(0, -1);
+    }
     return {
-      path: data.path,
+      path: path[0]=="/" ? path.slice(1) : path,
       component: PAGE_ALIAS[data.component],
       data: {
         title: data.name,
-        meta: data.meta
+        meta: data.meta || []
       }
     }
   }

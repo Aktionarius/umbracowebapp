@@ -18,6 +18,8 @@ import {SeoService} from "./services/SeoService";
 import {DataParseService} from "./services/DataParseService";
 import {MenuItemComponent} from "./shared/menu/menu.item.component";
 import {MenuComponent} from "./shared/menu/menu.component";
+import {CanActivateRoute} from "./services/CanActivate";
+import {ContentComponent} from "./content/content.component";
 
 @NgModule({
   imports: [
@@ -32,15 +34,18 @@ import {MenuComponent} from "./shared/menu/menu.component";
     AboutComponent,
     ErrorComponent,
     MenuComponent,
-    MenuItemComponent
+    MenuItemComponent,
+    ContentComponent
   ],
   providers: [
     appRoutingProviders,
     {provide: LocationStrategy, useClass: PathLocationStrategy},
     HttpService,
     SeoService,
-    DataParseService
+    DataParseService,
+    CanActivateRoute
   ],
+  entryComponents: [PageComponent, ErrorComponent],
   bootstrap: [ AppComponent ]
 })
 export class AppModule {

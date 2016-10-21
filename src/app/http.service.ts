@@ -12,8 +12,21 @@ export class HttpService {
       .map((response: Response) => response.json());
   }
 
-  getMenu() {
-    return this.http.get("http://umb.dynamikfabrikken.com/umbraco/api/contentApi/getTree")
-      .map(response=>response.json())
+  getMenu():Promise<any> {
+    let loadPromise:Promise<any>=null;
+    let that=this;
+    return (function ():Promise<any> {
+      if(loadPromise==null) {
+        loadPromise=new Promise<any>((resolve)=>{
+          that.http.get("http://umb.dynamikfabrikken.com/umbraco/api/contentApi/getTree")
+            .map(response=>response.json()).subscribe((response)=>{
+              resolve(response)
+          })
+        });
+        return loadPromise;
+      } else {
+        return loadPromise;
+      }
+    })();
   }
 }

@@ -48,7 +48,7 @@ export class SeoService {
    this.tags=[];
   }
 
-  public setMetaTags(tags:IMetaTag[]) {
+  public setMetaTags(tags:IMetaTag[]=[]) {
     this.removeAllMetaTags();
     for(let i=0;i< tags.length;i++) {
       this.setMetaElement(tags[i].name, tags[i].content)
