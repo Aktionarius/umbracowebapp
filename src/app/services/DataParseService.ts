@@ -10,13 +10,17 @@ export class DataParseService {
 
   }
 
+  //Parses data loaded from server to Angular 2 Routes
   parseMenuDataToRoutes(data):Routes {
+    //See Array.prototype.reduce
     return data.data.reduce((result, currentItem)=>{
       return [...result, this.getRouteFromData(currentItem)]
     },[])
   }
 
+  //Parses menu data from server to array of nested menu items
   parseMenuDataToNav(data):Array<IMenuItem> {
+    //See Array.prototype.reduce
     return data.data.reduce((result, currentItem)=>{
       if(currentItem.parentId==-1) {
         return [...result, Object.assign({}, this.mapDataObjectToMenuItem(currentItem), {
@@ -28,7 +32,9 @@ export class DataParseService {
     }, []);
   }
 
+  //Recursively finds child navigation elements
   private getChildItems(id, data):Array<IMenuItem> {
+    //See Array.prototype.reduce
     return data.reduce((result, currentItem)=>{
       if(currentItem.parentId==id && currentItem.navigationHide==false) {
         return [...result, Object.assign({},this.mapDataObjectToMenuItem(currentItem), {
@@ -39,6 +45,7 @@ export class DataParseService {
     }, []);
   }
 
+  //Maps each menu item received from server to Navigation item
   private mapDataObjectToMenuItem(object):IMenuItem {
     return {
       path: object.path,
@@ -46,6 +53,7 @@ export class DataParseService {
     }
   }
 
+  //Gets single route from each item in array
   private getRouteFromData(data):Route {
     let path=data.path;
     if(path[0]=="/") {
