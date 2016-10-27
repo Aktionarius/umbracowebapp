@@ -39,6 +39,7 @@ export class RouteController implements CanActivate, CanActivateChild {
     })
   }
 
+  //Loads menu data before the first page is loaded
   canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean>|Promise<boolean>|boolean {
     return this.canActivate(childRoute, state);
   }
