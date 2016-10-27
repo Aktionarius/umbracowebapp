@@ -1,3 +1,5 @@
+//Remove after updating to Typescript 2.1 and set --importHelpers into tsconfig
+import "ts-helpers"
 import {NgModule} from "@angular/core";
 import {BrowserModule} from "@angular/platform-browser";
 import {FormsModule} from "@angular/forms";
@@ -11,17 +13,20 @@ import {AboutComponent} from "./components/about/about.component";
 import {ErrorComponent} from "./components/error/error.component";
 import {SeoService} from "./services/SeoService";
 import {DataParseService} from "./services/DataParseService";
-import {MenuItemComponent} from "./shared/menu/menu.item.component";
-import {MenuComponent} from "./shared/menu/menu.component";
+import {MenuItemComponent} from "./components/menu/menu.item.component";
+import {MenuComponent} from "./components/menu/menu.component";
 import {RouteController} from "./services/RouteController";
 import {ContentComponent} from "./components/content/content.component";
-import {DataSrc} from "./diractives/DataSrc/DataSrc";
+import {ImageLazyLoadModule, ImageLazyLoaderService, WebWorkerService} from "ng2-image-lazy-load"
+import {LoadImagesService} from "./services/LoadImagesService";
 
+WebWorkerService.enabled=false;
 @NgModule({
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
+    ImageLazyLoadModule,
     routing
   ],
   declarations: [
@@ -31,8 +36,7 @@ import {DataSrc} from "./diractives/DataSrc/DataSrc";
     ErrorComponent,
     MenuComponent,
     MenuItemComponent,
-    ContentComponent,
-    DataSrc
+    ContentComponent
   ],
   providers: [
     appRoutingProviders,
@@ -40,7 +44,11 @@ import {DataSrc} from "./diractives/DataSrc/DataSrc";
     HttpService,
     SeoService,
     DataParseService,
-    RouteController
+    RouteController,
+    {
+      provide: ImageLazyLoaderService,
+      useClass: LoadImagesService
+    }
   ],
   entryComponents: [PageComponent, ErrorComponent, AppComponent],
   bootstrap: [ AppComponent ]

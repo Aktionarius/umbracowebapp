@@ -36,7 +36,7 @@ export class PageComponent implements OnInit {
 
 
   umbpage;
-  imgs;
+  imgs=[]
   loaded=false;
   constructor(private httpService: HttpService, private activatedRoute: ActivatedRoute, private seoService: SeoService, private http: Http, private el: ElementRef) {
   }
