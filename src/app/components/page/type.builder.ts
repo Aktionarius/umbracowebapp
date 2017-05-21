@@ -1,10 +1,11 @@
-import { Component, ComponentFactory, NgModule, Input, Injectable, Injector, Compiler, ReflectiveInjector, 
+import { Component, ComponentFactory, NgModule, NgZone, Input, Injectable, Injector, Compiler, ReflectiveInjector, 
           trigger, transition, AfterViewChecked, style, animate, keyframes } from '@angular/core';
 import { COMPILER_PROVIDERS } from '@angular/compiler';
 import { DynamicComponentModule } from 'angular2-dynamic-component/index';
 import { Router, ActivatedRoute, Params } from "@angular/router";
 import { DomSanitizer } from '@angular/platform-browser';
 import { BrowserModule } from "@angular/platform-browser";
+import { FormsModule } from '@angular/forms';
 import request from 'sync-request';
 import { HttpService } from "../../services/http.service";
 import { SeoService } from "../../services/SeoService";
@@ -12,6 +13,10 @@ import _ from 'lodash';
 
 import {DynamicComponentModuleFactory} from 'angular2-dynamic-component/index';
 import {MaterializeModule} from "angular2-materialize";
+import {MaterializeDirective} from "angular2-materialize";
+
+import {FormComponent} from "../form/form.component";
+
 export const DYNAMIC_MODULE = DynamicComponentModuleFactory.buildModule([MaterializeModule]);
 
 declare var carousel: any;
@@ -21,11 +26,10 @@ declare var buildcontenthtml:any;
 @Injectable()
 export class DynamicTypeBuilder {
   // wee need Dynamic component builder
-  constructor(injector: Injector, private compiler: Compiler) {
+  constructor(injector: Injector, private compiler: Compiler, private ngZone: NgZone) {
     injector = ReflectiveInjector.resolveAndCreate(COMPILER_PROVIDERS, injector);
     compiler = injector.get(Compiler) as Compiler;
-}
-
+  }
   // this object is singleton - so we can use this as a cache
   private _cacheOfFactories: {[templateKey: string]: ComponentFactory<AfterViewChecked>} = {};
 
@@ -50,7 +54,9 @@ export class DynamicTypeBuilder {
             {
                 factory = _.find(moduleWithFactories.componentFactories, { componentType: type });
 
-                this._cacheOfFactories[page.template] = factory;
+                this.ngZone.run(() => {
+                  this._cacheOfFactories[page.template] = factory;
+                });
 
                 resolve(factory);
             });
@@ -90,6 +96,7 @@ export class DynamicTypeBuilder {
         private activatedRoute: ActivatedRoute,
         private seoService: SeoService,
         private router: Router,
+        private ngZone: NgZone
       ) {
         this.init();
       }
@@ -113,42 +120,47 @@ export class DynamicTypeBuilder {
           this.subpage = params["subpage"];
           this.state = "void";
           this.url = this.activatedRoute.snapshot.data['side'];
+          console.log(this.activatedRoute.snapshot);
           this.httpService.getUmbPageData(this.side, this.subpage)
             .subscribe(
               (umbpagedata: any) => {
-                this.umbpage = umbpagedata.data;
-                this.imgs = umbpagedata.data.contentImages;
-                this.loaded=true;
+                this.ngZone.run(() => {
+                  this.umbpage = umbpagedata.data;
+                  this.imgs = umbpagedata.data.contentImages;
+                  this.loaded=true;
 
-                //TEST ON JAVASCRIPT OR HTML STRING
-                //let contentGrid = umbpagedata.data.bodyContentGrid;
+                  //TEST ON JAVASCRIPT OR HTML STRING
+                  //let contentGrid = umbpagedata.data.bodyContentGrid;
 
-                //buildcontenthtml function is added on index.html in js file named htmlbuilder.js
-                let contentGrid = buildcontenthtml(umbpagedata.data.bodyContentGridJson);
-                console.log("buildcontenthtml: ", contentGrid);
-                // this.contentGrid = contentGrid.replace('{{renderformid_1}}', '<div id="formContainer" #formContainer></div>');
-                this.contentGrid = contentGrid;
-                this.seoService.setMetaElement("metaDescription", umbpagedata.data.metaDescription);
-                this.seoService.setTitle(umbpagedata.data.title);
-                console.log(umbpagedata.data);
-                if (page.animation && page.animation.pageSwitch)
-                  this.state =`${this.side}-${this.subpage}`;
-              },
-              (error: any) => {
+                  //buildcontenthtml function is added on index.html in js file named htmlbuilder.js
+                  let contentGrid = buildcontenthtml(umbpagedata.data.bodyContentGridJson);
+                  // this.contentGrid = contentGrid.replace('{{renderformid_1}}', '<div id="formContainer" #formContainer></div>');
+                  this.contentGrid = contentGrid;
+                  this.seoService.setMetaElement("metaDescription", umbpagedata.data.metaDescription);
+                  this.seoService.setTitle(umbpagedata.data.title);
+                  if (page.animation && page.animation.pageSwitch)
+                    this.state =`${this.side}-${this.subpage}`;
+                });
+              }, (error: any) => {
                 // this.router.navigate(['error/not-found']);
-                this.contentGrid = 'Please place here error html (line 142 of src/app/components/page/type.builder.ts)';
-                if (page.animation && page.animation.pageSwitch)
-                  this.state =`${this.side}-${this.subpage}`;
+                this.ngZone.run(() => {
+                  this.contentGrid = 'Please place here error html (line 142 of src/app/components/page/type.builder.ts)';
+                  if (page.animation && page.animation.pageSwitch)
+                    this.state =`${this.side}-${this.subpage}`;
+                  console.log(this.state);
+                });
               });
         });
 
         this.activatedRoute.data.subscribe((data: any)=> {
-          if (data.meta) {
-            this.seoService.setMetaTags(data.meta);
-          }
-          if (data.title) {
-            this.seoService.setTitle(data.title);
-          }
+          this.ngZone.run(() => {
+            if (data.meta) {
+              this.seoService.setMetaTags(data.meta);
+            }
+            if (data.title) {
+              this.seoService.setTitle(data.title);
+            }
+          });
         });
       }
 
@@ -161,10 +173,13 @@ export class DynamicTypeBuilder {
       @NgModule({
         imports: [
           BrowserModule,
+          FormsModule,
           DynamicComponentModule,
         ],
         declarations: [
-          componentType
+          componentType,
+          FormComponent,
+          MaterializeDirective
         ],
       })
       class RuntimeComponentModule

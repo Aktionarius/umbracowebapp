@@ -1,4 +1,4 @@
-import { Component, ComponentFactory, NgModule, Input, Injectable, Injector, Compiler, ReflectiveInjector, ComponentFactoryResolver } from '@angular/core';
+import { Component, ComponentFactory, NgModule, NgZone, Input, Injectable, Injector, Compiler, ReflectiveInjector, ComponentFactoryResolver } from '@angular/core';
 import { PlatformLocation } from '@angular/common'
 import { COMPILER_PROVIDERS } from '@angular/compiler';
 import { Router } from "@angular/router";
@@ -88,6 +88,7 @@ export class DynamicTypeBuilder {
         private dataParse: DataParseService,
         private resolver: ComponentFactoryResolver,
         private location: PlatformLocation,
+        private ngZone: NgZone
       ){
       }
 
@@ -103,39 +104,43 @@ export class DynamicTypeBuilder {
       ngOnInit():void {
         console.log('message');
         setTimeout(() => {
-          if (this.nativeWindow.setPageBackground) {
-            const index = this.menuItems.findIndex((menuItem) => {
-              const path = menuItem.path === '/' ? '/home-open/' : menuItem.path;
-              return (`${this.nativeWindow.location.href}/`).indexOf(path) !== -1;
-            });
-            if (index !== -1) {
-              this.selectItem(this.menuItems[index], index, false);
-              this.nativeWindow.hideAbout(true);
-            } else if ((`${this.nativeWindow.location.href}/`).indexOf('about')) {
-              this.selectItem({}, -2, false);
+          this.ngZone.run(() => {
+            if (this.nativeWindow.setPageBackground) {
+              const index = this.menuItems.findIndex((menuItem) => {
+                const path = menuItem.path === '/' ? '/home-open/' : menuItem.path;
+                return (`${this.nativeWindow.location.href}/`).indexOf(path) !== -1;
+              });
+              if (index !== -1) {
+                this.selectItem(this.menuItems[index], index, false);
+                this.nativeWindow.hideAbout(true);
+              } else if ((`${this.nativeWindow.location.href}/`).indexOf('about')) {
+                this.selectItem({}, -2, false);
+              }
             }
-          }
+          });
         }, 500);
         this.location.onPopState((event) => {
-          if ((`${this.nativeWindow.location.href}/`).indexOf('/home/') !== -1) {
-            if (this.nativeWindow) {
-              const { closeAbout, hideFooter, hideAbout } = this.nativeWindow;
-              closeAbout && closeAbout();
-              hideFooter && hideFooter(false);
-              hideAbout && hideAbout(false);
+          this.ngZone.run(() => {
+            if ((`${this.nativeWindow.location.href}/`).indexOf('/home/') !== -1) {
+              if (this.nativeWindow) {
+                const { closeAbout, hideFooter, hideAbout } = this.nativeWindow;
+                closeAbout && closeAbout();
+                hideFooter && hideFooter(false);
+                hideAbout && hideAbout(false);
+              }
+              this.selectItem({}, -1, false);
+              return false;
+            } else if ((`${this.nativeWindow.location.href}/`).indexOf('/about/') !== -1) {
+              this.selectItem({}, -2, false);
+            } else {
+              const index = this.menuItems.findIndex((menuItem) => {
+                const path = menuItem.path === '/' ? '/home-open/' : menuItem.path;
+                return (`${this.nativeWindow.location.href}/`).indexOf(path) !== -1;
+              });
+              this.selectItem(this.menuItems[index], index, true);
+              this.nativeWindow.hideAbout(true);
             }
-            this.selectItem({}, -1, false);
-            return false;
-          } else if ((`${this.nativeWindow.location.href}/`).indexOf('/about/') !== -1) {
-            this.selectItem({}, -2, false);
-          } else {
-            const index = this.menuItems.findIndex((menuItem) => {
-              const path = menuItem.path === '/' ? '/home-open/' : menuItem.path;
-              return (`${this.nativeWindow.location.href}/`).indexOf(path) !== -1;
-            });
-            this.selectItem(this.menuItems[index], index, true);
-            this.nativeWindow.hideAbout(true);
-          }
+          });
         });
         this.http.getUmbPageGeneralData()
           .subscribe(

@@ -20,9 +20,9 @@ import {LoadImagesService} from "./services/LoadImagesService";
 import {ShopComponent} from "./components/shop/shop.component";
 import {ShopItemComponent} from "./components/shop/shop.item.component";
 import {CollapseModule} from 'ng2-bootstrap/collapse';
-import {MaterializeModule} from "angular2-materialize";
+// import {MaterializeModule} from "angular2-materialize";
 import {DynamicComponentModule} from 'angular2-dynamic-component/index';
-import { FormComponent } from './components/form/form.component';
+// import { FormComponent } from './components/form/form.component';
 import { CustomFormsModule } from 'ng2-validation';
 import { ContentComponent } from './components/content/content.component';
 import { COMPILER_PROVIDERS } from '@angular/compiler';
@@ -30,6 +30,7 @@ import { DynamicTypeBuilder as DynamicPageTypeBuilder } from './components/page/
 import { DynamicTypeBuilder as DynamicMenuTypeBuilder } from './components/menu/type.builder';
 import { DynamicTypeBuilder as DynamicMenuItemTypeBuilder } from './components/menu/menu-item/type.builder';
 import { DynamicTypeBuilder as DynamicFooterBuilder } from './components/footer/type.builder';
+
 
 WebWorkerService.enabled=false;
 @NgModule({
@@ -40,7 +41,7 @@ WebWorkerService.enabled=false;
     // ImageLazyLoadModule,
     CustomFormsModule,
     CollapseModule,
-    MaterializeModule,
+    // MaterializeModule,
     DynamicComponentModule,
     routing
   ],
@@ -52,7 +53,7 @@ WebWorkerService.enabled=false;
     ShopComponent,
     ShopItemComponent,
     SafeHtmlPipe,
-    FormComponent,
+    // FormComponent,
     ContentComponent
   ],
   providers: [

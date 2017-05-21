@@ -1,6 +1,6 @@
 <div id="main">
   <div id="content">
-    <form  (ngSubmit)="onSubmit()" #heroForm="ngForm" [id]="form.formId" materialize class="row col s12">
+    <form (ngSubmit)="onSubmit()" [id]="form.formId" materialize class="row col s12">
       <div *ngFor="let element of form.elements" [ngClass]="element.wrap">
         <div [ngClass]="element.class">
           <input *ngIf="element.type === 'input'" [required]="element.required" [(ngModel)]="element.model" [minlength]="element.minlength" [maxlength]="element.maxlength" [placeholder]="element.placeholder" [id]="element.id"  [ngStyle]="element.style" [type]="element.subType" class="validate" [ngModelOptions]="{standalone: true}">

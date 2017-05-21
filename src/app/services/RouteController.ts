@@ -6,6 +6,7 @@ import {
   CanActivateChild,
   Routes
 } from "@angular/router";
+import {NgZone} from "@angular/core";
 import {Observable} from "rxjs";
 import {HttpService} from "./http.service";
 import {DataParseService} from "./DataParseService";
@@ -17,7 +18,10 @@ export class RouteController implements CanActivate, CanActivateChild {
 
   isLoaded: boolean = false;
 
-  constructor(private http: HttpService, private dataParse: DataParseService, private router: Router) {
+  constructor(private http: HttpService, 
+              private dataParse: DataParseService, 
+              private router: Router,
+              private ngZone: NgZone) {
 
   }
 
@@ -41,14 +45,13 @@ export class RouteController implements CanActivate, CanActivateChild {
           }
         ];
 
-
-        this.router.config[0].children=[...this.dataParse.parseMenuDataToRoutes(response), ...additionalRoutes];
-        this.router.resetConfig([...this.router.config])
-        that.isLoaded = true;
-        resolve(false);
-
-        that.router.navigateByUrl(state.url);
-
+        this.ngZone.run(() => {
+          this.router.config[0].children=[...this.dataParse.parseMenuDataToRoutes(response), ...additionalRoutes];
+          this.router.resetConfig([...this.router.config])
+          that.isLoaded = true;
+          resolve(false);
+          that.router.navigateByUrl(state.url);
+        });
       })
     })
   }
@@ -59,4 +62,3 @@ export class RouteController implements CanActivate, CanActivateChild {
   }
 
 }
-

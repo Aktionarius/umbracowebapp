@@ -1,5 +1,5 @@
 import {Component, OnInit, AfterViewInit} from '@angular/core';
-import {Validators} from "@angular/forms";
+import {NgForm, Validators} from "@angular/forms";
 import {HttpService} from "../../services/http.service";
 import {DataParseService} from "../../services/DataParseService";
 
@@ -196,8 +196,9 @@ export class FormComponent implements OnInit, AfterViewInit {
   }
 
   constructor(public httpService:HttpService) {
-    var id = 1; 
+    var id = 1;
     this.httpService.getForm(id).subscribe((response:any) => {
+      console.log("FormComponent constructor: getForm service response", response);
       this.form = response.data[0];
       this.form.elements = this.form1.elements;
     })

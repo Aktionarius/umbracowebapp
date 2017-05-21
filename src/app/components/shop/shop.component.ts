@@ -1,9 +1,9 @@
-import {Component, OnInit, ViewChild} from "@angular/core"
+import {Component, OnInit, ViewChild} from "@angular/core";
 import {HttpService} from "../../services/http.service";
 import {DataParseService} from "../../services/DataParseService";
-import {Observable} from "rxjs/Rx"
+import {Observable} from "rxjs/Rx";
 
-let parseString = require("xml2js").parseString;
+import {parseString} from "xml2js";
 
 @Component({
   templateUrl: './shop.component.html'
