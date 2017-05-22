@@ -122,8 +122,8 @@ var applyAboutStyle = () => {
     x: width,
     y: 0,
   };
-  whitePart.style.clipPath = `polygon(${p1.x}px ${p1.y}px, ${p2.x}px ${p2.y}px, ${p3.x}px ${p3.y}px, ${p4.x}px ${p4.y}px)`;
-  blackPart.style.clipPath = `polygon(${q1.x}px ${q1.y}px, ${q2.x}px ${q2.y}px, ${q3.x}px ${q3.y}px, ${q4.x}px ${q4.y}px)`;
+  whitePart.style.clipPath = whitePart.style.webkitClipPath = `polygon(${p1.x}px ${p1.y}px, ${p2.x}px ${p2.y}px, ${p3.x}px ${p3.y}px, ${p4.x}px ${p4.y}px)`;
+  blackPart.style.clipPath = blackPart.style.webkitClipPath = `polygon(${q1.x}px ${q1.y}px, ${q2.x}px ${q2.y}px, ${q3.x}px ${q3.y}px, ${q4.x}px ${q4.y}px)`;
   const size = (aboutAnimationStep - 50) * (aboutAnimationStep - 50) / 10000 + 0.75;
   parentPage.style.height = '100%';
   parentPage.style.transform=`scale(${size})`;
@@ -133,15 +133,17 @@ var applyAboutStyle = () => {
 const applyOpenStyle = () => {
   const whitePart = document.getElementsByClassName('white-part')[0];
   const blackPart = document.getElementsByClassName('black-part')[0];
-  whitePart.style.clipPath = `polygon(0 0, 0 100%, 50% 100%, 50% 0%)`;
-  blackPart.style.clipPath = `polygon(50% 0, 50% 100%, 100% 100%, 100% 0%)`;
+  whitePart.style.clipPath = whitePart.style.webkitClipPath = `polygon(0 0, 0 100%, 50% 100%, 50% 0%)`;
+  blackPart.style.clipPath = blackPart.style.webkitClipPath = `polygon(50% 0, 50% 100%, 100% 100%, 100% 0%)`;
+  blackPart.style.pointerEvents = 'all';
 }
 
 const applyCloseStyle = () => {
   const whitePart = document.getElementsByClassName('white-part')[0];
   const blackPart = document.getElementsByClassName('black-part')[0];
-  whitePart.style.clipPath = `polygon(calc(100% - 100px) 0, calc(100% - 100px) 100px, 100% 100px, 100% 100px)`;
-  blackPart.style.clipPath = `polygon(calc(100% - 100px) 0, 100% 100px, 100% 100px, 100% 0)`;
+  whitePart.style.clipPath = whitePart.style.webkitClipPath = `polygon(calc(100% - 100px) 0, calc(100% - 100px) 100px, 100% 100px, 100% 100px)`;
+  blackPart.style.clipPath = blackPart.style.webkitClipPath = `polygon(calc(100% - 100px) 0, 100% 100px, 100% 100px, 100% 0)`;
+  blackPart.style.pointerEvents = 'none';
 }
 
 window.openAbout = function () {

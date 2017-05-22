@@ -111,12 +111,13 @@ export class DynamicTypeBuilder {
             if (index !== -1) {
               this.selectItem(this.menuItems[index], index, false);
               this.nativeWindow.hideAbout(true);
-            } else if ((`${this.nativeWindow.location.href}/`).indexOf('about')) {
+            } else if ((`${this.nativeWindow.location.href}/`).indexOf('/about/') !== -1) {
               this.selectItem({}, -2, false);
             }
           }
         }, 500);
         this.location.onPopState((event) => {
+          console.log(this.nativeWindow);
           if ((`${this.nativeWindow.location.href}/`).indexOf('/home/') !== -1) {
             if (this.nativeWindow) {
               const { closeAbout, hideFooter, hideAbout } = this.nativeWindow;
