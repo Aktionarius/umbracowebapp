@@ -81,10 +81,22 @@ window.hideAbout = function (hide) {
 let aboutAnimationStep = 0;
 let aboutAnimationInProgress = false;
 
-var applyAboutStyle = () => {
+var applyAboutStyle = (noAnimation = false) => {
   const parentPage = document.getElementsByClassName('blue-green')[0];
   const whitePart = document.getElementsByClassName('white-part')[0];
   const blackPart = document.getElementsByClassName('black-part')[0];
+  if (noAnimation)  {
+    if(aboutAnimationStep === 100) {
+      blackPart.style.display = 'block';
+      whitePart.style.display = 'none';
+      blackPart.style.pointerEvents = 'all';
+    } else {
+      blackPart.style.display = 'none';
+      whitePart.style.display = 'none';
+      blackPart.style.pointerEvents = 'none';
+    }
+    return;
+  }
   const width = whitePart.offsetWidth;
   const height = whitePart.offsetHeight / 2;
   const p1 = {
@@ -148,6 +160,13 @@ const applyCloseStyle = () => {
 
 window.openAbout = function () {
   window.hideFooter(true);
+  if ((!(false || !!document.documentMode) && !!window.StyleMedia ) || (typeof InstallTrigger !== 'undefined')) {
+    const menuFooter = document.getElementsByClassName('menu-footer')[0];
+    menuFooter.style.zIndex = 3;
+    aboutAnimationStep = 100;
+    applyAboutStyle(true);
+    return;
+  }
   applyAboutStyle();
   aboutAnimationStep += 1;
   aboutAnimationInProgress = true;
@@ -166,6 +185,12 @@ window.openAbout = function () {
 
 window.closeAbout = function() {
   const menuFooter = document.getElementsByClassName('menu-footer')[0];
+  if ((!(false || !!document.documentMode) && !!window.StyleMedia ) || (typeof InstallTrigger !== 'undefined')) {
+    menuFooter.style.zIndex = 1;
+    aboutAnimationStep = 1;
+    applyAboutStyle(true);
+    return;
+  }
   menuFooter.style.zIndex = 1;
   applyAboutStyle();
   aboutAnimationStep -= 1;
