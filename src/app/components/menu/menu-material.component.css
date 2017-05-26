@@ -71,6 +71,9 @@ nav {
 }
 
 .about .white-part {
+  -moz-clip-path: polygon(calc(100% - 100px) 0, calc(100% - 100px) 100px, 100% 100px, 100% 100px);
+  -ms-clip-path: polygon(calc(100% - 100px) 0, calc(100% - 100px) 100px, 100% 100px, 100% 100px);
+  -webkit-clip-path: polygon(calc(100% - 100px) 0, calc(100% - 100px) 100px, 100% 100px, 100% 100px);
   clip-path: polygon(calc(100% - 100px) 0, calc(100% - 100px) 100px, 100% 100px, 100% 100px);
   background-color: white;
   cursor: pointer;
@@ -85,8 +88,12 @@ nav {
 }
 
 .about .black-part {
+  -moz-clip-path: polygon(calc(100% - 100px) 0, 100% 100px, 100% 100px, 100% 0);
+  -ms-clip-path: polygon(calc(100% - 100px) 0, 100% 100px, 100% 100px, 100% 0);
+  -webkit-clip-path: polygon(calc(100% - 100px) 0, 100% 100px, 100% 100px, 100% 0);
   clip-path: polygon(calc(100% - 100px) 0, 100% 100px, 100% 100px, 100% 0);
   background-color: rgb(39, 39, 39);
+  pointer-events: none;
   color: white;
 }
 
