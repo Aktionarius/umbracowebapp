@@ -104,7 +104,7 @@ export class DynamicTypeBuilder {
         setTimeout(() => {
           if (this.nativeWindow.setPageBackground) {
             const index = this.menuItems.findIndex((menuItem) => {
-              const path = menuItem.path === '/' ? '/home-open/' : menuItem.path;
+              const path = menuItem.path === '/' ? '/home/' : menuItem.path;
               return (`${this.nativeWindow.location.href}/`).indexOf(path) !== -1;
             });
             if (index !== -1) {
@@ -117,12 +117,12 @@ export class DynamicTypeBuilder {
             const { closeAbout } = this.nativeWindow;
             closeAbout && closeAbout();
           }
-          if ((`${this.nativeWindow.location.href}/`).indexOf('/home/') !== -1) {
+          if ((`${this.nativeWindow.location.href}/`).indexOf('/menu/') !== -1) {
             this.selectItem({}, -1, false);
             return false;
           } else {
             const index = this.menuItems.findIndex((menuItem) => {
-              const path = menuItem.path === '/' ? '/home-open/' : menuItem.path;
+              const path = menuItem.path === '/' ? '/home/' : menuItem.path;
               return (`${this.nativeWindow.location.href}/`).indexOf(path) !== -1;
             });
             this.selectItem(this.menuItems[index], index, true);
@@ -156,9 +156,9 @@ export class DynamicTypeBuilder {
           this.nativeWindow.setPageBackground(index_num);
         }
         if (index_num > -1)
-          this.router.navigate([item.path === '/' ? 'home-open' : item.path]);
+          this.router.navigate([item.path === '/' ? 'home' : item.path]);
         else
-          this.router.navigate(['home']);
+          this.router.navigate(['menu']);
       }
 
       open = () => {

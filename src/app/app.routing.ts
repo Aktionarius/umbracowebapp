@@ -14,7 +14,7 @@ var appRoutes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'home',
+        redirectTo: 'menu',
         pathMatch: 'full'
       },
       {
