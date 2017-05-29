@@ -194,6 +194,10 @@ window.closeAbout = function() {
 $(function() {
   $(function() {
     initfontsize();
+      if ((!(false || !!document.documentMode) && !!window.StyleMedia ) || (typeof InstallTrigger !== 'undefined')) {
+        applyAboutStyle(true);
+        return;
+      }
   });
   window.addEventListener("resize", function() {
     initfontsize();
