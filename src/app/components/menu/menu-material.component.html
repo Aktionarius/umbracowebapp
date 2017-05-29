@@ -12,18 +12,18 @@
 </div>
 
 <div class="about">
-  <div class="white-part-shadow" (click)="selectItem({}, -2, false);">
+  <div class="white-part-shadow" (click)="open()">
   </div>
-  <div class="white-part" (click)="selectItem({}, -2, false);">
+  <div class="white-part" (click)="open()">
   </div>
-  <div class="black-part" (click)="selectItem({}, -2, false);">
+  <div class="black-part" (click)="open()">
     <div class="content">
       <footer></footer>
     </div>
   </div>
 </div>
 
-<div class="menu-footer" (click)="selectItem({}, -1, false); nativeWindow.closeAbout(); nativeWindow.hideFooter(false); nativeWindow.hideAbout(false);">
+<div class="menu-footer" (click)="close();">
   <!--<i class="material-icons">close</i>-->
   <i class="mdi mdi-close"></i>
 </div>

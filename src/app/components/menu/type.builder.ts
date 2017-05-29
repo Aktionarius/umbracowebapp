@@ -101,7 +101,6 @@ export class DynamicTypeBuilder {
       }
 
       ngOnInit():void {
-        console.log('message');
         setTimeout(() => {
           if (this.nativeWindow.setPageBackground) {
             const index = this.menuItems.findIndex((menuItem) => {
@@ -110,32 +109,23 @@ export class DynamicTypeBuilder {
             });
             if (index !== -1) {
               this.selectItem(this.menuItems[index], index, false);
-              this.nativeWindow.hideAbout(true);
-            } else if ((`${this.nativeWindow.location.href}/`).indexOf('/about/') !== -1) {
-              this.selectItem({}, -2, false);
             }
           }
         }, 500);
         this.location.onPopState((event) => {
-          console.log(this.nativeWindow);
+          if (this.nativeWindow) {
+            const { closeAbout } = this.nativeWindow;
+            closeAbout && closeAbout();
+          }
           if ((`${this.nativeWindow.location.href}/`).indexOf('/home/') !== -1) {
-            if (this.nativeWindow) {
-              const { closeAbout, hideFooter, hideAbout } = this.nativeWindow;
-              closeAbout && closeAbout();
-              hideFooter && hideFooter(false);
-              hideAbout && hideAbout(false);
-            }
             this.selectItem({}, -1, false);
             return false;
-          } else if ((`${this.nativeWindow.location.href}/`).indexOf('/about/') !== -1) {
-            this.selectItem({}, -2, false);
           } else {
             const index = this.menuItems.findIndex((menuItem) => {
               const path = menuItem.path === '/' ? '/home-open/' : menuItem.path;
               return (`${this.nativeWindow.location.href}/`).indexOf(path) !== -1;
             });
             this.selectItem(this.menuItems[index], index, true);
-            this.nativeWindow.hideAbout(true);
           }
         });
         this.http.getUmbPageGeneralData()
@@ -164,16 +154,27 @@ export class DynamicTypeBuilder {
 
         if (this.nativeWindow.setPageBackground) {
           this.nativeWindow.setPageBackground(index_num);
-          this.nativeWindow.hideFooter(index_num !== -1);
         }
-        if (navigate)
+        if (index_num > -1)
           this.router.navigate([item.path === '/' ? 'home-open' : item.path]);
-        else if(index_num === -2) {
-          this.nativeWindow.openAbout();
-          this.router.navigate(['about']);
-        }
         else
           this.router.navigate(['home']);
+      }
+
+      open = () => {
+        if (this.nativeWindow.openAbout) {
+          this.nativeWindow.openAbout();
+          this.nativeWindow.isAboutOpen = true;
+        }
+      }
+
+      close = () => {
+        if (this.nativeWindow.isAboutOpen) {
+          this.nativeWindow.closeAbout();
+          this.nativeWindow.isAboutOpen = false;
+        } else {
+          this.selectItem({}, -1, true);
+        }
       }
 
       private getWidthSearchTab():string {

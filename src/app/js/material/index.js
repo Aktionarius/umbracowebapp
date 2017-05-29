@@ -63,21 +63,6 @@ window.hideFooter = function (hide) {
   footer.className = classes.join(' ');
 }
 
-window.hideAbout = function (hide) {
-  const aboutComponent = document.getElementsByClassName('about')[0];
-  var classes = aboutComponent.className.split(' ');
-
-  if (hide) {
-    classes.push('invisible');
-  } else {
-    var index = classes.indexOf("invisible");
-    if (index >= 0) {
-      classes.splice( index, 1 );
-    }
-  }
-  aboutComponent.className = classes.join(' ');
-}
-
 let aboutAnimationStep = 0;
 let aboutAnimationInProgress = false;
 
@@ -159,7 +144,6 @@ const applyCloseStyle = () => {
 }
 
 window.openAbout = function () {
-  window.hideFooter(true);
   if ((!(false || !!document.documentMode) && !!window.StyleMedia ) || (typeof InstallTrigger !== 'undefined')) {
     const menuFooter = document.getElementsByClassName('menu-footer')[0];
     menuFooter.style.zIndex = 3;
@@ -203,7 +187,6 @@ window.closeAbout = function() {
     aboutAnimationInProgress = false;
     aboutAnimationStep = 0;
     applyCloseStyle();
-    window.hideFooter(false);
   }
 }
 
