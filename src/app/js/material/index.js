@@ -196,6 +196,8 @@ $(function() {
     initfontsize();
       console.log("first_initfontsize");
       if ((false || !!document.documentMode) || (!(false || !!document.documentMode) && !!window.StyleMedia ) || (typeof InstallTrigger !== 'undefined')) {
+        const triangular = document.getElementsByClassName('triangular')[0];
+        triangular.style.display = 'block';
         applyAboutStyle(true);
         return;
       }
