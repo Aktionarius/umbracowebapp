@@ -33,3 +33,8 @@
 .menu-item a, .menu-item a:hover {
   color: inherit;
 }
+
+.menu-text {
+    width: 100%;
+    word-wrap: break-word;
+}

@@ -98,6 +98,7 @@ nav {
   border-bottom: 49px solid white;
   border-left: 49px solid white;
   display: none;
+  cursor: pointer;
 }
 
 .about .black-part {
