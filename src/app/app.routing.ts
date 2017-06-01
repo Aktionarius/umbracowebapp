@@ -6,6 +6,7 @@ import {FormComponent} from "./components/form/form.component";
 import {PageComponent} from "./components/page/page.component";
 import {AppComponent} from "./components/app/app.component";
 import {ContentComponent} from "./components/content/content.component";
+import Settings from './services/settings';
 
 var appRoutes: Routes = [
   {
@@ -14,7 +15,8 @@ var appRoutes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'menu',
+        // redirectTo: 'menu',
+        redirectTo: Settings[window.location.hostname].starturl,
         pathMatch: 'full'
       },
       {

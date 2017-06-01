@@ -1,7 +1,8 @@
 import { style, animate, keyframes } from '@angular/core';
 export default {
   //ikke testet
-  'localhost_plainsit': {
+  'localhost': {
+    starturl: 'forside',
     menu: {
       template: 'menu0',
     },
@@ -32,7 +33,8 @@ export default {
     ],
   },
   // ikke testet
-  'localhost': {
+  'localhost_frame': {
+    starturl: 'home',
     menu: {
       template: 'mmenu',
     },
@@ -40,6 +42,7 @@ export default {
       template: 'menu0.item',
     },
     page: {
+      
       template: 'page',
       animation: {
         pageSwitch: true,
@@ -69,7 +72,8 @@ export default {
       '/src/app/css/customstylingtest.css'
   ],
   },
-  'localhost_frame': {
+  'localhost_plainsit': {
+    starturl: 'menu',
     menu: {
       template: 'menu-material',
       is_menutab_opened: true,
