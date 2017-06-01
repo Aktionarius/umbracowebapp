@@ -9,7 +9,7 @@
 
 <div class="pages-nav__item"  *ngFor="let item of items; let i = index">
     <a class="link link--page"
-    (click)="selectItem(item)"
+    (click)="selectItem(item, i)"
     [class.selected]="getClass('0x001', item, i)">{{item.name}}</a>
 </div>
 

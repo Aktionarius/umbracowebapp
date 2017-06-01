@@ -25,3 +25,8 @@ body.menuopen #sidenav-overlay {
       line-height: 56px !important;
   }
 }
+
+
+nav ul a {
+    color: #000;
+}
