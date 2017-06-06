@@ -26,7 +26,8 @@ export class RouteController implements CanActivate, CanActivateChild {
     let that = this;
     return new Observable<boolean>((resolve)=> {
       if (that.isLoaded) {
-        resolve(true);
+        //resolve(true);
+        resolve.next(true);
         return;
       }
       that.http.getMenu().subscribe((response)=> {
@@ -45,7 +46,8 @@ export class RouteController implements CanActivate, CanActivateChild {
         this.router.config[0].children=[...this.dataParse.parseMenuDataToRoutes(response), ...additionalRoutes];
         this.router.resetConfig([...this.router.config])
         that.isLoaded = true;
-        resolve(false);
+        //resolve(false);
+        resolve.next(false);
 
         that.router.navigateByUrl(state.url);
 
@@ -59,4 +61,3 @@ export class RouteController implements CanActivate, CanActivateChild {
   }
 
 }
-
