@@ -5,7 +5,7 @@ import { DynamicTypeBuilder } from './type.builder';
 import { DomSanitizer } from '@angular/platform-browser';
 import Settings from '../../services/settings';
 import _ from "lodash";
-//import {FormComponent} from "../form/form.component";
+import {FormComponent} from "../form/form.component";
 
 @Pipe ({ name: 'safeHtml'})
 

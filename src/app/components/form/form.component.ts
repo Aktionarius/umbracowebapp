@@ -1,5 +1,5 @@
 import {Component, OnInit, AfterViewInit} from '@angular/core';
-import {Validators} from "@angular/forms";
+import {NgForm, Validators} from "@angular/forms";
 import {HttpService} from "../../services/http.service";
 import {DataParseService} from "../../services/DataParseService";
 

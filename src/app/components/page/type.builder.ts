@@ -5,6 +5,7 @@ import { DynamicComponentModule } from 'angular2-dynamic-component/index';
 import { Router, ActivatedRoute, Params } from "@angular/router";
 import { DomSanitizer } from '@angular/platform-browser';
 import { BrowserModule } from "@angular/platform-browser";
+import { FormsModule } from '@angular/forms';
 import request from 'sync-request';
 import { HttpService } from "../../services/http.service";
 import { SeoService } from "../../services/SeoService";
@@ -12,6 +13,8 @@ import _ from 'lodash';
 
 import {DynamicComponentModuleFactory} from 'angular2-dynamic-component/index';
 import {MaterializeModule} from "angular2-materialize";
+import {FormComponent} from "../form/form.component";
+
 export const DYNAMIC_MODULE = DynamicComponentModuleFactory.buildModule([MaterializeModule]);
 
 declare var carousel: any;
@@ -159,10 +162,13 @@ export class DynamicTypeBuilder {
       @NgModule({
         imports: [
           BrowserModule,
+          FormsModule,
           DynamicComponentModule,
+          MaterializeModule
         ],
         declarations: [
-          componentType
+          componentType,
+          FormComponent,
         ],
       })
       class RuntimeComponentModule
