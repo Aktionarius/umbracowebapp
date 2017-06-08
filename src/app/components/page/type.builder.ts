@@ -74,8 +74,6 @@ export class DynamicTypeBuilder {
         ],
     })
     class CustomDynamicComponent implements AfterViewChecked {
-      lastFormContent: string = '';
-
       render:boolean = true;
       umbpage;
       imgs=[];

@@ -1,7 +1,7 @@
 import { style, animate, keyframes } from '@angular/core';
 export default {
   //ikke testet
-  'localhost': {
+  'localhost_paperstack': {
     starturl: 'forside',
     menu: {
       template: 'menu0',
@@ -33,7 +33,7 @@ export default {
     ],
   },
   // ikke testet
-  'localhost_frame': {
+  'localhost_planesite': {
     starturl: 'home',
     menu: {
       template: 'mmenu',
@@ -42,7 +42,7 @@ export default {
       template: 'menu0.item',
     },
     page: {
-      
+
       template: 'page',
       animation: {
         pageSwitch: true,
@@ -72,7 +72,7 @@ export default {
       '/src/app/css/customstylingtest.css'
   ],
   },
-  'localhost_plainsit': {
+  'localhost': {
     starturl: 'menu',
     menu: {
       template: 'menu-material',

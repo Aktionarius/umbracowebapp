@@ -196,10 +196,17 @@ export class FormComponent implements OnInit, AfterViewInit {
   }
 
   constructor(public httpService:HttpService) {
-    var id = 1; 
+    var id = 1132;
+    this.form = this.form1;
     this.httpService.getForm(id).subscribe((response:any) => {
+      console.log(response.data[0]);
       this.form = response.data[0];
-      this.form.elements = this.form1.elements;
+      //FROM HERE WE WILL DETECT WHAT FORMID TO GET AND USE API TO GET FORM JSON
+
+      //  this.form = response.data[0];
+      //this.form.elements = this.form1.elements;
+      //  this.form = this.form1;
+
     })
   }
 
@@ -208,18 +215,18 @@ export class FormComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-      window.addEventListener('scroll', function(e){
-        var distanceY = window.pageYOffset || document.documentElement.scrollTop,
-          shrinkOn = 300,
-          header = document.querySelector("header");
-        if (distanceY > shrinkOn) {
-          classie.add(header,"smaller");
-        } else {
-          if (classie.has(header,"smaller")) {
-            classie.remove(header,"smaller");
-          }
-        }
-      })
-
+    //  window.addEventListener('scroll', function(e){
+    //    var distanceY = window.pageYOffset || document.documentElement.scrollTop,
+    //      shrinkOn = 300,
+    //      header = document.querySelector("header");
+    //    if (distanceY > shrinkOn) {
+    //      classie.add(header,"smaller");
+    //    } else {
+    //      if (classie.has(header,"smaller")) {
+    //        classie.remove(header,"smaller");
+    //      }
+    //    }
+    //  })
+//
   }
 }
