@@ -192,15 +192,19 @@ export class FormComponent implements OnInit, AfterViewInit {
   form:any = {};
 
   onSubmit(){
-    alert(this.form.successMessage);
+    alert("YES!");
+    //console.log(this.form);
+    //alert(this.form.successMessage);
   }
 
   constructor(public httpService:HttpService) {
     var id = 1132;
-    this.form = this.form1;
+    //this.form = this.form1;
     this.httpService.getForm(id).subscribe((response:any) => {
       console.log(response.data[0]);
-      this.form = response.data[0];
+      this.form = this.form1;
+
+      //this.form = response.data[0];
       //FROM HERE WE WILL DETECT WHAT FORMID TO GET AND USE API TO GET FORM JSON
 
       //  this.form = response.data[0];

@@ -151,7 +151,13 @@ export class DynamicTypeBuilder {
         });
       }
 
-      ngAfterViewChecked() {}
+      ngAfterViewChecked() {
+
+
+      }
+
+
+
     };
     // a component for this particular template
     return CustomDynamicComponent;

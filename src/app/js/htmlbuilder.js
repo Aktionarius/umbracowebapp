@@ -89,8 +89,10 @@ function editorview(contentItem) {
         //get content for this div
         buildlistofitems(contentItem.value.macroParamsDictionary, id, "card");
       } else if(macroalias == "Form") {
-        e += "<h1>Here we add dynamic form</h1>";
-        // e += "<app-form></app-form>";
+        var id = macroalias + "_" + guidGenerator();
+        //prepare div
+        e += "<div id='" + id + "'><div class='loader-inner ball-scale center-align'><div></div></div></div>";
+        initform(contentItem.value.macroParamsDictionary, id);
       } else {
         //console.log(macroalias);
       }
@@ -204,8 +206,6 @@ function buildlistofitems(nodeinfo, target, type) {
       }
     }
     if (type == "slide") {
-
-
       var s = "";
       //s += "<div class='carousel-fixed-item center'>";
       //s += "<a class='btn waves-effect white grey-text darken-text-2'>button</a>";
@@ -261,6 +261,79 @@ function buildlistofitems(nodeinfo, target, type) {
   });
   return cl
 }
+
+//form handling
+
+function initform(forminfo, target){
+
+  var f = "";
+
+  var postUrl = "http://localhost:50947/umbraco/api/contentApi/getform?formid=" + forminfo.formular;
+  $.getJSON(postUrl, function(data) {}).success(function(data) {
+
+      // build form html
+      $("#" + target).empty();
+      var fd = data.data[0];
+      var elements = data.data[0].elements;
+
+      // build form html
+      f += '<form data-formid="' + forminfo.formular + '" data-errorMessage="' + fd.errorMessage + '" data-successMessage="' + fd.successMessage + '">';
+        for (var i = 0; i < elements.length; i++) {
+          var name = elements[i].label;
+          var type = elements[i].type;
+          var subType = elements[i].subType;
+          var validateclass = "";
+          var isrequired = "";
+          if (elements[i].required) {
+            validateclass = "validate"; //invalid or valid // not used yet
+            isrequired = "required";
+          }
+          f += '<label for="' + name + '">' + name + '</label>';
+          f += '<' + type + ' type="' + subType + '" name="' + name + '" autocomplete="off"  ' + isrequired + ' />';
+        }
+      f += '<button class="waves-effect waves-light btn" type="submit">' + fd.buttonText + '</button>';
+      f += '</form>';
+      // add form to DOM
+      $("#" + target).append(f);
+      $("#" + target + " form").submit(function(e) {e.preventDefault();});
+  }).error(function() {
+    console.log("Error on form init");
+  }).complete(function(data) {
+  });
+
+  $(document).on("click", "form button", function (e) {
+      if ($(this).closest("form").valid()) {
+        sendformtoapi($(this).closest("form"));
+      }
+      else{
+        alert("please check form");
+      }
+  });
+
+
+}
+
+function sendformtoapi(form){
+
+  var formid = form.data("formid");
+  var text = "";
+  form.css("opacity", "0");
+  form.children('input').each(function () {
+    text += this.name + ": " + this.value + "<br/>"
+  });
+
+  var postUrl = "http://localhost:50947/umbraco/api/formApi/SaveFormRequest?=" + formid + "&formcontent=" + text;
+  $.getJSON(postUrl, function(data) {}).success(function(data) {
+
+  }).error(function() {
+    console.log("Error sending");
+  }).complete(function(data) {
+  });
+
+
+}
+
+//form handling end
 
 //main function
 function buildcontenthtml(j) {

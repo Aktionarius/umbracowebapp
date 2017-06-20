@@ -1,0 +1,99 @@
+
+<article>
+  <div id="talktextwrapper">
+
+    <div class="talk-bubble tri-right border round btm-right-in" style="display:none;">
+      <div id="shuffletext" class="talktext">
+        <h1 class="introtext">Spænd hjelmen</h1>
+        <p>
+        Dynamiske og engagerende weboplevelser kræver hårdt arbejde.
+        </p>
+        <p style="margin-bottom:10px;"></p>
+        <p>
+         Vi er heldigvis ikke bange for lidt sved på panden.
+       </p>
+      </div>
+    </div>
+
+    <!--googleoff: index-->
+    <div class="think-bubble think">
+      <div id="shuffletext">
+        <p>hmm...</p>
+      </div>
+    </div>
+    <div class="think-bubble think1">
+      <div id="shuffletext" class="talktext">
+        <p>Hvordan får jeg nu fortalt det hele?</p>
+        <p>- Der er jo en del... <span class="jotxt"> JO!</span></p>
+      </div>
+    </div>
+    <!--googleon: index-->
+
+  </div>
+  <img id="worker" src="../src/app/img/dynamikfabrikken/dynamikfabrikken_mand.png" alt="Umbraco hjemmesider fra Dynamikfabrikken" />
+</article>
+<!-- Modal Trigger -->
+<nav class="contactnav">
+  <a href="#modalcontactform">
+    <i class="material-icons">mail</i>
+  </a>
+  <a href="tel:+45 31375043">
+    <i class="material-icons">call</i>
+  </a>
+  <a href="#modalchat">
+    <i class="material-icons">chat</i>
+  </a>
+</nav>
+
+<!--googleoff: index-->
+<div class="theendbackground"></div>
+<div class="theendtext">Fortsættes...</div>
+<!--googleon: index-->
+
+<!-- Modal Structure -->
+<div id="modalcontactform" class="modal">
+  <form data-formid="dyanmikconatctform" data-errorMessage="<p>Der er desværre sket en fejl</p>" data-successMessage="<p>Tak for din henvendelse</p>">
+    <div class="modal-content">
+      <div class="row">
+        <div class="col s12">
+          <h4>Skriv til Dynamikfabrikken</h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12 m8">
+          <input type="text" name="Navn" autocomplete="off"  required />
+          <label for="Navn">Navn</label>
+        </div>
+        <div class="col s12 m8">
+          <input type="email" name="Email" autocomplete="off"  required />
+          <label for="Email">Email</label>
+        </div>
+        <div class="col s12">
+          <textarea name="Besked" class="materialize-textarea"></textarea>
+          <label for="Besked">Hvad skal vi tale om?</label>
+        </div>
+        <div class="col s12 formsubmitcontainer">
+          <button class="waves-effect waves-light btn" type="submit">Send</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div id="modalchat" class="modal">
+  <form data-formid="dyanmikconatctform" data-errorMessage="<p>Der er desværre sket en fejl</p>" data-successMessage="<p>Tak for din henvendelse</p>">
+    <div class="modal-content">
+      <h4>Chat med Dynamikfabrikken</h4>
+      <!--
+      <div id="tawk">
+        <iframe id="tawkframe" src="https://tawk.to/chat/5942556ce9c6d324a4735a1a/1bilj0hg5/?$_tawk_popout=true"></iframe>
+      </div>
+    -->
+
+    <div id="tawk">
+    </div>
+
+
+    </div>
+  </form>
+</div>

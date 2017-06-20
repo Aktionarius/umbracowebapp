@@ -72,7 +72,7 @@ export default {
       '/src/app/css/customstylingtest.css'
   ],
   },
-  'localhost': {
+  'localhost_frame': {
     starturl: 'menu',
     menu: {
       template: 'menu-material',
@@ -102,7 +102,7 @@ export default {
       template: 'footer-material',
     },
     pageid: '1183',
-    scripts: ['/src/app/js/material/index.js'],
+    scripts: ['/src/app/js/material/index.js', 'https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js'],
     styles: ['/src/app/css/material/index.css'],
   },
   'bast.dynamikfabrikken.com': {
@@ -136,6 +136,43 @@ export default {
     pageid: '1183',
     scripts: ['/src/app/js/material/index.js'],
     styles: ['/src/app/css/material/index.css'],
+  },
+  'localhost': {
+    starturl: 'home',
+    menu: {
+      template: 'dynamik',
+      is_menutab_opened: true,
+    },
+    menuItem: {
+      template: '',
+    },
+    page: {
+      template: 'dynamik',
+      animation: {
+        pageSwitch: true,
+        animations: [
+          animate("1.5s", keyframes([
+            style({opacity: '0'}),
+            style({opacity: '0'}),
+            style({opacity: '0.1'}),
+            style({opacity: '0.3'}),
+            style({opacity: '0.6'}),
+            style({opacity: '0.8'}),
+            style({opacity: '1'})
+         ]))
+        ],
+      },
+    },
+    footer: {
+      template: '',
+    },
+    pageid: '1183',
+    scripts: ['/src/app/js/dynamik/jquery.shuffleLetters.js'
+    , '/src/app/js/dynamik/index.js'
+    , '//cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js'
+    , 'https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js',
+    , '/src/app/js/validatemessage.js'],
+    styles: ['/src/app/css/dynamik/index.css'],
   },
   'other': {
     menu: {
