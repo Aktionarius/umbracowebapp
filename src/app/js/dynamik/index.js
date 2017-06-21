@@ -1,4 +1,24 @@
+
 $(function(){
+
+setTimeout(function(){
+  $.extend( $.validator.messages, {
+  	required: "Dette felt er påkrævet.",
+  	maxlength: $.validator.format( "Indtast højst {0} tegn." ),
+  	minlength: $.validator.format( "Indtast mindst {0} tegn." ),
+  	rangelength: $.validator.format( "Indtast mindst {0} og højst {1} tegn." ),
+  	email: "Indtast en gyldig email-adresse.",
+  	url: "Indtast en gyldig URL.",
+  	date: "Indtast en gyldig dato.",
+  	number: "Indtast et tal.",
+  	digits: "Indtast kun cifre.",
+  	equalTo: "Indtast den samme værdi igen.",
+  	range: $.validator.format( "Angiv en værdi mellem {0} og {1}." ),
+  	max: $.validator.format( "Angiv en værdi der højst er {0}." ),
+  	min: $.validator.format( "Angiv en værdi der mindst er {0}." ),
+  	creditcard: "Indtast et gyldigt kreditkortnummer."
+  } );
+}, 2000);
 
   $('.modal').modal({
     //  dismissible: true, // Modal can be dismissed by clicking outside of the modal
@@ -8,32 +28,13 @@ $(function(){
     //  startingTop: '4%', // Starting top style attribute
     //  endingTop: '10%', // Ending top style attribute
       ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
-      //    fitiframe(modal.find(".modal-content div").innerWidth(), 460);
-
-
-
-  //      var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-  //      (function(){
-  //      var s1=document.createElement("script"),s0=document.getElementById("tawk");
-
-  //      s1.async=true;
-  //      s1.src='https://embed.tawk.to/5942556ce9c6d324a4735a1a/1bilj0hg5';
-  //      s1.charset='UTF-8';
-  //      s1.setAttribute('crossorigin','*');
-  //      console.log(s0);
-  //      console.log(s1);
-  //      s0.parentNode.insertBefore(s1,s0);
-  //      })();
-
-
-
-
+        fitiframe(modal.find(".modal-content div").innerWidth(), 460);
       },
      complete: function() {  }
    });
 
    $(window).resize(function(){
-       fitiframe($("#modalchat").width()-48, 400);
+     fitiframe($("#modalchat").width()-48, 400);
    });
 
    function fitiframe(width, height){

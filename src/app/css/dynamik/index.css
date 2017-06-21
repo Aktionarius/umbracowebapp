@@ -280,7 +280,10 @@ input[type=email] {
 
 textarea.materialize-textarea {
   margin-bottom: 0;
+  padding: .8rem 0 0rem 0;
+  min-height: 2rem;
 }
+
 
 form .col {
   margin-bottom: 20px;
@@ -345,11 +348,16 @@ label.error {
     text-align: center;
   }
 
-  .formthankstext {
+.formthankstext {
     position: relative;
-    top: 40%;
-    transform: translateY(-40%);
-    font-size: 24px;
+    top: 10%;
+    font-size: 16px;
+    margin-right: 15px;
+    margin-left: 15px;
+  }
+
+  input:not([type]), input[type=text], input[type=password], input[type=email], input[type=url], input[type=time], input[type=date], input[type=datetime], input[type=datetime-local], input[type=tel], input[type=number], input[type=search], textarea.materialize-textarea {
+      font-size: 16px !important;
   }
 
 /* the end */
