@@ -20,6 +20,10 @@ setTimeout(function(){
   } );
 }, 2000);
 
+
+
+
+
   $('.modal').modal({
     //  dismissible: true, // Modal can be dismissed by clicking outside of the modal
     //  opacity: .5, // Opacity of modal background
@@ -57,6 +61,22 @@ setTimeout(function(){
         //alert("please check form");
       }
   });
+
+
+  function getParameterByName(name, url) {
+      if (!url) url = window.location.href;
+      name = name.replace(/[\[\]]/g, "\\$&");
+      var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+          results = regex.exec(url);
+      if (!results) return null;
+      if (!results[2]) return '';
+      return decodeURIComponent(results[2].replace(/\+/g, " "));
+  }
+
+  if(getParameterByName('action') && getParameterByName('action') == "openchat"){
+       $('#modalchat').modal('open');
+  }
+
 
   var thinkbubble = $(".think");
   var thinkbubble1 = $(".think1");
