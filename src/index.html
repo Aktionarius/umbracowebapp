@@ -50,8 +50,13 @@
   <script src="https://cdn.jsdelivr.net/lodash/4.11.1/lodash.min.js"></script>
   <script src="/src/app/js/htmlbuilder.js"></script>
   
-  <script type="text/javascript">
-
+  <script>
+    window.onbeforeunload = function(){;
+      if(window.document.activeElement.id == "tawkframe")
+        return false;
+      else 
+        return;
+    }
   </script>
 
 </head>
