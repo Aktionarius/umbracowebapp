@@ -137,7 +137,7 @@ export default {
     scripts: ['/src/app/js/material/index.js'],
     styles: ['/src/app/css/material/index.css'],
   },
-  'localhost': {
+  'localhost_dynamikfabrikken': {
     starturl: 'home',
     menu: {
       template: 'dynamik',
@@ -206,6 +206,34 @@ export default {
     , '/src/app/js/dynamik/index.js'
     , 'https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js'],
     styles: ['/src/app/css/dynamik/index.css'],
+  },
+  'localhost': {
+    starturl: 'home',
+    menu: {
+      template: 'plain',
+      is_menutab_opened: true,
+    },
+    menuItem: {
+      template: 'plain',
+    },
+    page: {
+      template: 'plain',
+      animation: {
+        pageSwitch: true,
+        animations: [
+          animate("1.0s", keyframes([
+            style({opacity: '0'}),
+            style({opacity: '1'})
+         ]))
+        ],
+      },
+    },
+    footer: {
+      template: 'plain',
+    },
+    pageid: '1248',
+    scripts: ['/src/app/js/plain/index.js'],
+    styles: ['/src/app/css/plain/index.css'],
   },
   'other': {
     menu: {

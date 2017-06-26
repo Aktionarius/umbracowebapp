@@ -1,0 +1,20 @@
+
+<div class="pages-nav__item"  *ngFor="let item of items; let i = index">
+    <a class="boxmenuitem">
+      <img *ngIf="item.menuImage" style="max-width: 100%;" [src]="item.menuImage" onError=""/>
+      <!--
+      <i class="material-icons">mail</i>
+      -->
+      <span class="iconlabel">{{item.name}}</span>
+    </a>
+</div>
+
+
+<!--
+<a class="boxmenuitem" href="#">
+  <i class="material-icons">mail</i>
+  <span class="iconlabel">Skriv til os</span>
+</a>
+
+
+-->
