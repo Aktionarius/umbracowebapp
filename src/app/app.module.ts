@@ -14,6 +14,7 @@ import {ErrorComponent} from "./components/error/error.component";
 import {SeoService} from "./services/SeoService";
 import {DataParseService} from "./services/DataParseService";
 import {MenuComponent} from "./components/menu/menu.component";
+import {FooterComponent} from "./components/footer/footer.component";
 import {RouteController} from "./services/RouteController";
 import {ImageLazyLoadModule, ImageLazyLoaderService, WebWorkerService} from "ng2-image-lazy-load"
 import {LoadImagesService} from "./services/LoadImagesService";
@@ -50,6 +51,7 @@ WebWorkerService.enabled=false;
     PageComponent,
     ErrorComponent,
     MenuComponent,
+    FooterComponent,
     ShopComponent,
     ShopItemComponent,
     SafeHtmlPipe,
@@ -70,7 +72,7 @@ WebWorkerService.enabled=false;
     DynamicPageTypeBuilder,
     DynamicMenuTypeBuilder,
     DynamicMenuItemTypeBuilder,
-    DynamicFooterBuilder,
+    DynamicFooterBuilder
   ],
   entryComponents: [PageComponent, ErrorComponent, AppComponent, ShopComponent],
   bootstrap: [ AppComponent ]

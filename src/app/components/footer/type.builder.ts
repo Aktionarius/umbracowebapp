@@ -6,7 +6,6 @@ import { FormsModule } from "@angular/forms";
 import request from 'sync-request';
 import { HttpService } from "../../services/http.service";
 import { DataParseService } from "../../services/DataParseService";
-import { IMenuItem } from "../../model/IMenuItem";
 import _ from 'lodash';
 
 export interface IHaveDynamicData {
