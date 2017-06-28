@@ -78,6 +78,7 @@ export class DataParseService {
       menuText: object.menuText,
       menuImage: object.menuImage,
       level: object.level,
+      menuIcon: object.menuIcon
     }
   }
 

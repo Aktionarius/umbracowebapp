@@ -4,5 +4,6 @@ export interface IMenuItem {
   menuText: string,
   menuImage: string,
   level: number,
+  menuIcon: string,
   children?: Array<IMenuItem>
 }

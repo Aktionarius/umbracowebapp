@@ -123,7 +123,7 @@ body, html {
     padding: 40px;
 }
 
-.boxmenuitem i.material-icons {
+.boxmenuitem i.mdi {
   line-height: 1;
   height: auto;
   font-size: 40px;
@@ -201,7 +201,7 @@ header {
         padding: 20px;
     }
 
-    .boxmenuitem i.material-icons {
+    .boxmenuitem i.mdi {
       font-size: 20px;
     }
 
