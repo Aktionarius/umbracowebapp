@@ -10,6 +10,6 @@
   <div class="menu-text" *ngIf="!selectedItemInfo.isAnimating && selectedItemInfo.index_num != i">
     <div [innerHTML]="item.menuText || ''">
     </div>
-    <img *ngIf="item.menuImage" [src]="item.menuImage" onError=""/>
+    <img *ngIf='item.menuImage.includes(".png") || item.menuImage.includes(".jpeg") || item.menuImage.includes(".jpg")' [src]="item.menuImage" onError=""/>
   </div>
 </div>

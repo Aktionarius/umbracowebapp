@@ -1,3 +1,6 @@
+
+var twoelm = "<div class='row'><div class='col s12 m6'>#elm1#</div><div class='col s12 m6'>#elm2#</div></div>";
+
 //universal functions
 function guidGenerator() {
   var S4 = function() {
@@ -76,7 +79,15 @@ function editorview(contentItem) {
     if (type == "rte") {
       // line 139 - TemplateUtilities.ParseInternalLinks not added
       e += contentItem.value.replace("src=\"/", "src=\"" + domainname + "/");
-    } else if (type == "macro") {
+    }
+    else if (type == "ImageText"){
+      console.log(contentItem.value);
+      e += twoelm.replace("#elm1#", "Image").replace("#elm2#", "Text")
+    }
+    else if (type == "StatementAndButton"){
+      e += "StatementAndButton here";
+    }
+    else if (type == "macro") {
       var macroalias = contentItem.value.macroAlias;
       if (macroalias == "slider") {
         var id = macroalias + "_" + guidGenerator();

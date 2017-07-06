@@ -10,6 +10,7 @@ import { DataParseService } from "../../services/DataParseService";
 import { IMenuItem } from "../../model/IMenuItem";
 import { MenuItemComponent } from './menu-item/menu.item.component';
 import { MenuSearchComponent } from './menu-search/menu.search.component';
+import { FooterComponent } from '../footer/footer.component'; // footer issue
 import _ from 'lodash';
 
 export interface IHaveDynamicData {};
@@ -202,6 +203,7 @@ export class DynamicTypeBuilder {
         declarations: [
           componentType,
           MenuItemComponent,
+          FooterComponent, // footer issue
           MenuSearchComponent,
         ],
       })

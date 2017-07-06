@@ -1,7 +1,10 @@
-<header>
-  Header
-</header>
-
-<main>
-  Main
-</main>
+<div class="paper-content" [@wrapper]="state">
+  <div *ngIf="loaded">
+    <DynamicComponent
+      [componentTemplate]='contentGrid'
+      [componentModules]="extraModules"
+      (dynamicComponentReady)="dynamicCallback()">
+    </DynamicComponent>
+  </div>
+  <div class="loader centered" *ngIf="!loaded"><div class="loader-inner ball-scale"><div></div></div></div>
+</div>

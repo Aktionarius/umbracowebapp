@@ -2,7 +2,7 @@ import { style, animate, keyframes } from '@angular/core';
 export default {
   //ikke testet
   'localhost_paperstack': {
-    starturl: 'forside',
+    starturl: 'home',
     menu: {
       template: 'menu0',
     },
@@ -14,8 +14,8 @@ export default {
       animation: {
         pageSwitch: false,
         animations: [
-          animate("2s", keyframes([
-           style({transform: 'scale(0)'}),
+          animate("0s", keyframes([
+           style({transform: 'scale(1)'}),
            style({transform: 'scale(1)'}),
          ])),
         ],
@@ -33,7 +33,7 @@ export default {
     ],
   },
   // ikke testet
-  'localhost_planesite': {
+  'localhost_djdjd': {
     starturl: 'home',
     menu: {
       template: 'mmenu',
@@ -72,8 +72,8 @@ export default {
       '/src/app/css/customstylingtest.css'
   ],
   },
-  'localhost_frame': {
-    starturl: 'menu',
+  'localhost_sjs': {
+    starturl: 'home',
     menu: {
       template: 'menu-material',
       is_menutab_opened: true,
@@ -137,7 +137,7 @@ export default {
     scripts: ['/src/app/js/material/index.js'],
     styles: ['/src/app/css/material/index.css'],
   },
-  'localhost_dynamikfabrikken': {
+  'localhost_dyn': {
     starturl: 'home',
     menu: {
       template: 'dynamik',
@@ -221,7 +221,35 @@ export default {
       animation: {
         pageSwitch: true,
         animations: [
-          animate("1.0s", keyframes([
+          animate("0s", keyframes([
+            style({opacity: '0'}),
+            style({opacity: '1'})
+         ]))
+        ],
+      },
+    },
+    footer: {
+      template: 'plain',
+    },
+    pageid: '1248',
+    scripts: ['/src/app/js/plain/index.js'],
+    styles: ['/src/app/css/plain/index.css'],
+  },
+  'plain.dynamikfabrikken.com': {
+    starturl: 'home',
+    menu: {
+      template: 'plain',
+      is_menutab_opened: true,
+    },
+    menuItem: {
+      template: 'plain',
+    },
+    page: {
+      template: 'plain',
+      animation: {
+        pageSwitch: true,
+        animations: [
+          animate("0s", keyframes([
             style({opacity: '0'}),
             style({opacity: '1'})
          ]))

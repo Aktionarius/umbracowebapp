@@ -10,6 +10,28 @@ body, html {
     margin: 0;
     height: 100%;
     overflow-x: hidden;
+    overflow: -moz-scrollbars-vertical;
+    overflow-y: scroll;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.20), rgba(0,0,0,0));
+    background-image: -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.20), rgba(0,0,0,0));
+    background-image: -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.20), rgba(0,0,0,0));
+    background-image: -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.20), rgba(0,0,0,0));
+    margin: 22px 0 22px 0;
+}
+
+h1 {
+  font-size: 36px;
+  line-height: 1;
+  margin: 12px 0 0 0;
+}
+
+.row .col {
+    padding: 0 1.0rem;
 }
 
 .menubar{
@@ -19,6 +41,7 @@ body, html {
     height: 100%;
     position: absolute;
     right: 0;
+    top: 0;
     z-index: 2;
 }
 
@@ -121,18 +144,20 @@ body, html {
     text-align: center;
     line-height: 1;
     padding: 40px;
+    cursor: pointer;
 }
 
 .boxmenuitem i.mdi {
   line-height: 1;
   height: auto;
-  font-size: 40px;
+  font-size: 24px;
 }
 
 .boxmenuitem .iconlabel {
   font-size: 12px;
   height: auto;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 300;
 }
 
 .footermenuitems {
@@ -152,13 +177,13 @@ body, html {
 
 header, footer {
   z-index: -2;
+  text-align: center;
+  padding: 20px 0 30px 0;
 }
 
-header {
-    height: 75px;
-    color: #fff;
+.paper-content{
+    margin: 30px 0;
 }
-
 
 
 @media only screen  and (max-width: 768px) {
@@ -225,14 +250,23 @@ header {
     header {
         position: absolute;
         height: 50px;
+        top: 0px;
         z-index: 3;
         width: calc(100% - 50px);
+        background: #fff;
+        padding: 0 0 0 10px;
+    }
+
+    header img {
+        max-height: 100%;
+        float: left;
     }
 }
 
 @media only screen  and (min-width: 768px) {
     header, footer {
         margin-right: 75px;
+        width: calc(100% - 75px);
     }
 
     .swishmenu.opend {

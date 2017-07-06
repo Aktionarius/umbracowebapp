@@ -1,6 +1,7 @@
 
 <div class="pages-nav__item"  *ngFor="let item of items; let i = index">
-    <a class="boxmenuitem">
+    <a class="boxmenuitem"
+       (click)="selectItem(item, i)">
       <i class="mdi {{item.menuIcon}}"></i>
       <span class="iconlabel">{{item.name}}</span>
     </a>

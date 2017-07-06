@@ -1,3 +1,8 @@
+
+<header>
+    <img src="{{umbpagegeneral?.MainLogo}}" alt="{{umbpagegeneral?.CompanyName}}" class="responsive-img" />
+</header>
+
 <div class="menubar">
     <div class="menushuffelbtn">
         <div class="menushuffelbtnicon open">
@@ -8,8 +13,9 @@
         </div>
     </div>
 </div>
+
 <nav class="swishmenu closed">
-    <menu-item [items]="menuItems"></menu-item>
+    <menu-item [items]="menuItems" [isCollapsed]="is_menutab_opened" [selectItem]="selectItem"></menu-item>
     <div class="footermenuitems">
         <a href="#">
           Footermenuitem 1

@@ -4,7 +4,7 @@ const getBackgroundColor = function(indexNum) {
 }
 
 const getBackgroundImage = function(indexNum) {
-  var bgimage = ['url(http://dynamikfabrikken.com/img/bg.png)', 'url(http://dynamikfabrikken.com/img/bg.png)', 'url(http://dynamikfabrikken.com/img/bg.png)', 'url(http://dynamikfabrikken.com/img/bg.png)', 'url(http://dynamikfabrikken.com/img/bg.png)', 'url(http://dynamikfabrikken.com/img/bg.png)'];
+  var bgimage = ['url(../src/app/img/dynamikfabrikken/bg.png)', 'url(../src/app/img/dynamikfabrikken/bg.png)', 'url(../src/app/img/dynamikfabrikken/bg.png)', 'url(../src/app/img/dynamikfabrikken/bg.png)', 'url(../src/app/img/dynamikfabrikken/bg.png)', 'url(../src/app/img/dynamikfabrikken/bg.png)'];
   return bgimage[indexNum % bgimage.length];
 }
 
