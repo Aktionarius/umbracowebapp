@@ -129,6 +129,8 @@ export class DynamicTypeBuilder {
               //  this.contentGrid = contentGrid.replace('{{renderformid_1}}', '<div id="formContainer" #formContainer></div>');
                 this.contentGrid = contentGrid;
                 this.seoService.setMetaElement("metaDescription", umbpagedata.data.metaDescription);
+                this.seoService.setMetaElement("metaKeywords", umbpagedata.data.metaKeywords);
+                this.seoService.setFavicon(umbpagedata.data.favicon);
                 this.seoService.setTitle(umbpagedata.data.title);
                 if (page.animation && page.animation.pageSwitch)
                   this.state =`${this.side}-${this.subpage}`;

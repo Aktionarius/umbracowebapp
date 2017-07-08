@@ -21,6 +21,10 @@ export class SeoService {
     this.titleService.setTitle(newTitle);
   }
 
+  public setFavicon(newFavicon: string) {
+    this.getOrCreateFaviconElement(newFavicon)
+  }
+
   public setMetaElement(name:string, content:string) {
     this.tags.push({
       name,
@@ -64,5 +68,23 @@ export class SeoService {
     }
     return el;
   }
+  /**
+   * get the HTML Favicon Element when it is in the markup, or create it.
+   * @param href
+   * @returns {HTMLElement}
+   */
+  private getOrCreateFaviconElement(href: string): HTMLElement {
+    let favicon: HTMLElement;
+    favicon = <HTMLElement>document.querySelector(`link[type="image/x-icon"][href="${href}"]`);
+    if (favicon === null) {
+      favicon = document.createElement('link');
+      favicon.setAttribute('type', 'image/x-icon');
+      favicon.setAttribute('rel', 'icon');
+      favicon.setAttribute('href', href);
+      this.headElement.insertBefore(favicon, this.headElement.firstChild);
+    }
+    return favicon;
+  }
+
 
 }
