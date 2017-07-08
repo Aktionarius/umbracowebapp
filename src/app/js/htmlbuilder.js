@@ -44,6 +44,18 @@ function renderRow(row, singleColumn) {
   return rowhtml;
 }
 
+function initimage(imgid, id){
+  var postUrl = "http://localhost:50947/umbraco/api/contentApi/Getimagesrc/?imgid=" + imgid;
+  $.getJSON(postUrl, function(data) {}).success(function(data) {
+    if (data) {
+      $("#" + id).attr("src", data.url).attr("alt", data.altText);
+    }
+  }).error(function() {
+    console.log("Error getimage");
+  }).complete(function(data) {
+  });
+}
+
 function RenderElementAttributes(contentItem) {
   var r = "";
 
@@ -73,7 +85,7 @@ function editorview(contentItem) {
   var e = ""
   var type = contentItem.editor.alias;
 
-  var domainname = "http://localhost:50947"; //http://localhost:50947/
+  var domainname = "http://localhost:50947";
 
   try {
     if (type == "rte") {
@@ -81,8 +93,13 @@ function editorview(contentItem) {
       e += contentItem.value.replace("src=\"/", "src=\"" + domainname + "/");
     }
     else if (type == "ImageText"){
-      console.log(contentItem.value);
-      e += twoelm.replace("#elm1#", "Image").replace("#elm2#", "Text")
+
+      var imgid = contentItem.value.macroParamsDictionary.Image;
+      var id = "imgid_" + guidGenerator();
+      e += twoelm.replace("#elm1#", "<img id='" + id + "' />").replace("#elm2#", contentItem.value.macroParamsDictionary.Text);
+      if (imgid) {
+        initimage(imgid, id);
+      }
     }
     else if (type == "StatementAndButton"){
       e += "StatementAndButton here";

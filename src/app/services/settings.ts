@@ -72,7 +72,7 @@ export default {
       '/src/app/css/customstylingtest.css'
   ],
   },
-  'localhost_sjs': {
+  'localhost_frame': {
     starturl: 'home',
     menu: {
       template: 'menu-material',
