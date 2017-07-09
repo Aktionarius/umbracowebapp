@@ -10,7 +10,7 @@ import { DataParseService } from "../../services/DataParseService";
 import { IMenuItem } from "../../model/IMenuItem";
 import { MenuItemComponent } from './menu-item/menu.item.component';
 import { MenuSearchComponent } from './menu-search/menu.search.component';
-import { FooterComponent } from '../footer/footer.component'; // footer issue
+import { FooterModule } from './../footer/footer.module';
 import _ from 'lodash';
 
 export interface IHaveDynamicData {};
@@ -199,13 +199,13 @@ export class DynamicTypeBuilder {
         imports: [
           BrowserModule,
           FormsModule,
+          FooterModule
         ],
         declarations: [
           componentType,
           MenuItemComponent,
-          FooterComponent, // footer issue
           MenuSearchComponent,
-        ],
+        ]
       })
       class RuntimeComponentModule
       {

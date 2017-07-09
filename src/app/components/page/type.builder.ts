@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import request from 'sync-request';
 import { HttpService } from "../../services/http.service";
 import { SeoService } from "../../services/SeoService";
+import { FooterModule } from './../footer/footer.module';
 import _ from 'lodash';
 
 import {DynamicComponentModuleFactory} from 'angular2-dynamic-component/index';
@@ -168,12 +169,14 @@ export class DynamicTypeBuilder {
           BrowserModule,
           FormsModule,
           DynamicComponentModule,
-          MaterializeModule
+          MaterializeModule,
+          FooterModule
         ],
         declarations: [
           componentType,
           FormComponent,
-        ],
+          // FooterComponent
+        ]
       })
       class RuntimeComponentModule
       {

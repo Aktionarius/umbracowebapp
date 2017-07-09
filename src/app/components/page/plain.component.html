@@ -5,6 +5,9 @@
       [componentModules]="extraModules"
       (dynamicComponentReady)="dynamicCallback()">
     </DynamicComponent>
+    <div class="content">
+        <footer></footer>
+    </div>
   </div>
   <div class="loader centered" *ngIf="!loaded"><div class="loader-inner ball-scale"><div></div></div></div>
 </div>

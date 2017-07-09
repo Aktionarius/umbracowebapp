@@ -27,6 +27,7 @@ import {DynamicComponentModule} from 'angular2-dynamic-component/index';
 import { CustomFormsModule } from 'ng2-validation';
 import { ContentComponent } from './components/content/content.component';
 import { COMPILER_PROVIDERS } from '@angular/compiler';
+import { FooterModule } from './components/footer/footer.module';
 import { DynamicTypeBuilder as DynamicPageTypeBuilder } from './components/page/type.builder';
 import { DynamicTypeBuilder as DynamicMenuTypeBuilder } from './components/menu/type.builder';
 import { DynamicTypeBuilder as DynamicMenuItemTypeBuilder } from './components/menu/menu-item/type.builder';
@@ -44,6 +45,7 @@ WebWorkerService.enabled=false;
     CollapseModule,
     // MaterializeModule,
     DynamicComponentModule,
+    FooterModule,
     routing
   ],
   declarations: [
@@ -51,7 +53,6 @@ WebWorkerService.enabled=false;
     PageComponent,
     ErrorComponent,
     MenuComponent,
-  // footer issue  FooterComponent,
     ShopComponent,
     ShopItemComponent,
     SafeHtmlPipe,

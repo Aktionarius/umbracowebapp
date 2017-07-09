@@ -5,6 +5,7 @@
 import { Component, Input, ComponentFactoryResolver, ViewChild, ViewContainerRef, ComponentFactory, AfterViewChecked } from "@angular/core";
 import { DynamicTypeBuilder } from './type.builder';
 import Settings from '../../services/settings';
+import { FooterComponent } from './../footer/footer.component';
 
 @Component({
   selector: "main-menu",
