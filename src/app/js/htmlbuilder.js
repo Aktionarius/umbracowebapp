@@ -92,7 +92,7 @@ function editorview(contentItem) {
   try {
     if (type == "rte") {
       // line 139 - TemplateUtilities.ParseInternalLinks not added
-      e += contentItem.value.replace("src=\"/", "src=\"" + domainname + "/");
+      e += contentItem.value.replace("href\"/", "href=\"" + domainname + "/");
     }
     else if (type == "ImageText"){
       var data = contentItem.value.macroParamsDictionary
