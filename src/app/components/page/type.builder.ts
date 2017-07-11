@@ -83,6 +83,7 @@ export class DynamicTypeBuilder {
       url: string = "";
       extraTemplate = ``;
       extraModules = [MaterializeModule];
+      exstraStyle: string[]
       side;
       subpage;
       state;
@@ -121,6 +122,8 @@ export class DynamicTypeBuilder {
                 this.umbpage = umbpagedata.data;
                 this.imgs = umbpagedata.data.contentImages;
                 this.loaded=true;
+
+                this.exstraStyle = [css]
 
                 //TEST ON JAVASCRIPT OR HTML STRING
                 //let contentGrid = umbpagedata.data.bodyContentGrid;
