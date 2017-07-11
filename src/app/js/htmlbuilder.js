@@ -1,5 +1,7 @@
 
-var twoelm = "<div class='row'><div class='col s12 m6'>#elm1#</div><div class='col s12 m6'>#elm2#</div></div>";
+var twoelm = "<article class='row'><div class='col s12 m6'>#elm1#</div><div class='col s12 m6'>#elm2#</div></article>";
+var oneelm = "<div class='row'><div class='col s12 m12'>#elm1#</div></div>";
+var oneelmcenter = "<div class='row'><div class='col s12 m12 center'>#elm1#</div></div>";
 
 //universal functions
 function guidGenerator() {
@@ -93,37 +95,45 @@ function editorview(contentItem) {
       e += contentItem.value.replace("src=\"/", "src=\"" + domainname + "/");
     }
     else if (type == "ImageText"){
-
-      var imgid = contentItem.value.macroParamsDictionary.Image;
+      var data = contentItem.value.macroParamsDictionary
+      var imgid = data.Image;
       var id = "imgid_" + guidGenerator();
-      e += twoelm.replace("#elm1#", "<img id='" + id + "' />").replace("#elm2#", contentItem.value.macroParamsDictionary.Text);
-      if (imgid) {
-        initimage(imgid, id);
-      }
+      //generate text
+      var text = "";
+      if (data.Heading) {text += "<h1 class='likeh5'>" + data.Heading + "</h1>";}
+      if (data.Text) {text += "<p>" + data.Text.replace(/\n/g, "<br />") + "</p>";}
+      //tjeck if we will revert
+      if (data.Revert != "0") {e += twoelm.replace("#elm1#", text).replace("#elm2#", "<img id='" + id + "' />");}
+      else {e += twoelm.replace("#elm1#", "<img id='" + id + "' />").replace("#elm2#", text);}
+      // init image src if any id
+      if (imgid) {initimage(imgid, id);}
     }
     else if (type == "StatementAndButton"){
-      e += "StatementAndButton here";
+      var text = "<h3 class='light header likeh2'>Showcase</h3><p class='col s12 m8 offset-m2 caption'>Checkout what people are creating with Materialize. Get inspired by these beautiful sites and you can even submit your own website to be showcased here.</p><a href='http://materializecss.com/showcase.html' class='btn-large waves-effect waves-light'>Explore our Showcase</a>";
+      e += oneelmcenter.replace("#elm1#", text);
+    }
+    else if (type == "slider"){
+      var macroalias = contentItem.value.macroAlias;
+      var id = macroalias + "_" + guidGenerator();
+      console.log(contentItem.value.macroParamsDictionary);
+      e += "<div id='" + id + "'><div class='loader-inner ball-scale center-align'><div></div></div></div>";
+      buildlistofitems(contentItem.value.macroParamsDictionary, id, "slide");
+    }
+    else if (type == "cardlist"){
+      var id = macroalias + "_" + guidGenerator();
+      //prepare div
+      e += "<div id='" + id + "' class='row'><div class='loader-inner ball-scale center-align'><div></div></div></div>";
+      //get content for this div
+      buildlistofitems(contentItem.value.macroParamsDictionary, id, "card");
+    }
+    else if (type == "Form"){
+      var id = macroalias + "_" + guidGenerator();
+      //prepare div
+      e += "<div id='" + id + "'><div class='loader-inner ball-scale center-align'><div></div></div></div>";
+      initform(contentItem.value.macroParamsDictionary, id);
     }
     else if (type == "macro") {
-      var macroalias = contentItem.value.macroAlias;
-      if (macroalias == "slider") {
-        var id = macroalias + "_" + guidGenerator();
-        e += "<div id='" + id + "'><div class='loader-inner ball-scale center-align'><div></div></div></div>";
-        buildlistofitems(contentItem.value.macroParamsDictionary, id, "slide");
-      } else if (macroalias == "cardlist") {
-        var id = macroalias + "_" + guidGenerator();
-        //prepare div
-        e += "<div id='" + id + "' class='row'><div class='loader-inner ball-scale center-align'><div></div></div></div>";
-        //get content for this div
-        buildlistofitems(contentItem.value.macroParamsDictionary, id, "card");
-      } else if(macroalias == "Form") {
-        var id = macroalias + "_" + guidGenerator();
-        //prepare div
-        e += "<div id='" + id + "'><div class='loader-inner ball-scale center-align'><div></div></div></div>";
-        initform(contentItem.value.macroParamsDictionary, id);
-      } else {
-        //console.log(macroalias);
-      }
+      // not in use anymore I think...
     } else {
       // image
       if (contentItem.editor.name == "Image") {

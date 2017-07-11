@@ -1,12 +1,17 @@
 <hr />
-<p>
-Milma Regnskab IvS<br />
-Jens Hessellund<br />
-Ribevej 64<br />
-6740 Bramming
-</p>
-<p>
-  Telefon: 71 96 96 41
-  <br />
-  E-mail: regnskab@milma.dk
-</p>
+<div class="container">
+  <div class="row thin-text center">
+    <div class="col sm12 s12">
+      <h3 class="likeh5">Kontakt</h3>
+      <p>
+      {{umbpagegeneral?.CompanyName}}<br />
+      {{umbpagegeneral?.CompanyAddress}}<br />
+      {{umbpagegeneral?.CompanyAddress2}}<br />
+      </p>
+      <p>
+        <a *ngIf="umbpagegeneral?.CompanyPhone?.length > 0" href="tel:{{umbpagegeneral?.CompanyPhone}}">Tlf.: {{umbpagegeneral?.CompanyPhone}}</a><br *ngIf="umbpagegeneral?.CompanyPhone?.length > 0" />
+        <a *ngIf="umbpagegeneral?.CompanyEmail?.length > 0" href="mailto:{{umbpagegeneral?.CompanyEmail}}">Email: {{umbpagegeneral?.CompanyEmail}}</a><br *ngIf="umbpagegeneral?.CompanyEmail?.length > 0" />
+      </p>
+    </div>
+  </div>
+</div>

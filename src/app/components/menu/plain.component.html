@@ -17,11 +17,10 @@
 <nav class="swishmenu closed">
     <menu-item [items]="menuItems" [isCollapsed]="is_menutab_opened" [selectItem]="selectItem"></menu-item>
     <div class="footermenuitems">
-        <a href="#">
-          Footermenuitem 1
-        </a>
-        <a href="#">
-          Footermenuitem 2
-        </a>
+      <h3 class="likeh5">Følg {{umbpagegeneral?.CompanyName}}</h3>
+      <a href="{{umbpagegeneral?.CompanyFacebook}}" *ngIf="umbpagegeneral?.CompanyFacebook?.length > 0"  class="btn-floating btn" target="_blank"><i class="large mdi mdi-facebook"></i></a>
+      <a href="{{umbpagegeneral?.CompanyLinkedin}}" *ngIf="umbpagegeneral?.CompanyLinkedin?.length > 0"  class="btn-floating btn" target="_blank"><i class="large mdi mdi-linkedin"></i></a>
+      <a href="{{umbpagegeneral?.CompanyInstagram}}" *ngIf="umbpagegeneral?.CompanyInstagram?.length > 0"  class="btn-floating btn" target="_blank"><i class="large mdi mdi-instagram"></i></a>
+      <a href="{{umbpagegeneral?.CompanyTwitter}}" *ngIf="umbpagegeneral?.CompanyTwitter?.length > 0"  class="btn-floating btn" target="_blank"><i class="large mdi mdi-twitter"></i></a>
     </div>
 </nav>

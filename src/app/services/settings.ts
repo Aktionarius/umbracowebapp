@@ -73,7 +73,7 @@ export default {
   ],
   },
   'localhost_frame': {
-    starturl: 'home',
+    starturl: 'menu',
     menu: {
       template: 'menu-material',
       is_menutab_opened: true,
@@ -232,7 +232,8 @@ export default {
       template: 'plain',
     },
     pageid: '1248',
-    scripts: ['/src/app/js/plain/index.js'],
+    scripts: ['/src/app/js/plain/index.js',
+            '//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js'],
     styles: ['/src/app/css/plain/index.css'],
   },
   'plain.dynamikfabrikken.com': {
