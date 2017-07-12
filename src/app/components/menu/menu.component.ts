@@ -15,6 +15,8 @@ export class MenuComponent {
 
   @ViewChild('ngIncludeContent', { read: ViewContainerRef }) viewContainer: ViewContainerRef;
 
+  public is_menutab_opened = false;
+
   constructor(
     private resolver: ComponentFactoryResolver,
     protected typeBuilder: DynamicTypeBuilder,

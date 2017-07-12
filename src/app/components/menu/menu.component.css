@@ -124,6 +124,13 @@ header {
   cursor: pointer;
 }
 
+.header {
+	  border-bottom: 0 !important;
+    border-top: 0 !important;
+    position: initial !important;
+    background: 0 !important;
+}
+
 @media screen and (max-width: 768px) {
   #search_tab.expanded {
     width: 100%;
