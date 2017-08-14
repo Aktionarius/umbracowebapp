@@ -76,6 +76,7 @@ export class DynamicTypeBuilder {
     })
     class CustomDynamicComponent implements AfterViewChecked {
       render:boolean = true;
+      umbpagegeneral;
       umbpage;
       imgs=[];
       loaded=false;
@@ -116,6 +117,20 @@ export class DynamicTypeBuilder {
           this.subpage = params["subpage"];
           this.state = "void";
           this.url = this.activatedRoute.snapshot.data['side'];
+          this.httpService.getUmbPageGeneralData()
+            .subscribe(
+              (umbpagegeneraldata: any) => {
+                //The problem was that you received an array from server but used as object
+                this.umbpagegeneral = umbpagegeneraldata.data[0];
+                this.seoService.setBeforeHead(this.umbpagegeneral.ScriptHead);
+                this.seoService.setBeforeBody(this.umbpagegeneral.ScriptBodyTop);
+                this.seoService.setAfterBody(this.umbpagegeneral.ScriptBodyBottom);
+              },
+              (error: any) => {
+                this.contentGrid = 'Please place here error html (line 126 of src/app/components/page/type.builder.ts)';
+                if (page.animation && page.animation.pageSwitch)
+                  this.state =`${this.side}-${this.subpage}`;
+              });
           this.httpService.getUmbPageData(this.side, this.subpage)
             .subscribe(
               (umbpagedata: any) => {
@@ -139,7 +154,7 @@ export class DynamicTypeBuilder {
               },
               (error: any) => {
                 // this.router.navigate(['error/not-found']);
-                this.contentGrid = 'Please place here error html (line 142 of src/app/components/page/type.builder.ts)';
+                this.contentGrid = 'Please place here error html (line 155 of src/app/components/page/type.builder.ts)';
                 if (page.animation && page.animation.pageSwitch)
                   this.state =`${this.side}-${this.subpage}`;
               });
