@@ -129,7 +129,7 @@ export class DynamicTypeBuilder {
                 //let contentGrid = umbpagedata.data.bodyContentGrid;
 
                 //buildcontenthtml function is added on index.html in js file named htmlbuilder.js
-                let contentGrid = buildcontenthtml(umbpagedata.data.bodyContentGridJson);
+                let contentGrid = buildcontenthtml(umbpagedata.data.bodyContentGridJson, umbpagedata.data.domaine);
               //  this.contentGrid = contentGrid.replace('{{renderformid_1}}', '<div id="formContainer" #formContainer></div>');
                 this.contentGrid = contentGrid;
                 this.seoService.setMetaElement("metaDescription", umbpagedata.data.metaDescription);

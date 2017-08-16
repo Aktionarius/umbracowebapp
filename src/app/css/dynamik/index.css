@@ -34,12 +34,28 @@ body::-webkit-scrollbar {
     width: 0;
 }
 
-article{
+article.homearticle{
   height: 400px;
   max-height: 40%;
-  position: absolute;
+  position: fixed;
   bottom: 58px;
   right: 0;
+  z-index: 9;
+}
+
+article.dynamikarticle{
+  margin-top:80px;
+  margin-bottom: 260px;
+}
+
+.smalltext{
+  font-size: 12px;
+  line-height: 1.2;
+}
+
+.subheading {
+  font-size: 18px;
+  margin-bottom: 16px;
 }
 
 #worker{
@@ -52,6 +68,12 @@ article{
   bottom: 0px;
   float:right;
 }
+
+#floorimg{
+  position: fixed;
+  bottom: 0;
+  z-index: 1;
+  }
 
 #talktextwrapper{
   height: 0px;
@@ -246,6 +268,18 @@ header h1{
   z-index: 3;
 }
 
+/*modal fullwidth*/
+.modalfullwidth.open{
+  top: 0px !important;
+  height: 100%;
+  max-height: none;
+  width: 100%;
+}
+
+.modalfullwidth .modal-content {
+  padding-top: 80px;
+}
+
 /* nav */
 nav{
   background-color: transparent;
@@ -253,7 +287,7 @@ nav{
   height: auto;
   line-height: 48px;
   box-shadow: none;
-  position: absolute;
+  position: fixed;
   top: 20px;
   left: 223px;
   z-index: 3;
@@ -450,6 +484,31 @@ label.error {
   .think-bubble:after {
     right: 94px;
     bottom: -58px;
+  }
+
+}
+
+@media screen and (max-width: 1300px) {
+  article.dynamikarticle {
+      margin-bottom: 460px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .scrollpage #worker{
+        height: 60%;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .scrollpage #worker{
+        height: 40%;
+  }
+  article.dynamikarticle {
+      margin-bottom: 320px;
   }
 
 }

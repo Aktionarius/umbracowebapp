@@ -137,7 +137,7 @@ export default {
     scripts: ['/src/app/js/material/index.js'],
     styles: ['/src/app/css/material/index.css'],
   },
-  'localhost_dyn': {
+  'localhost': {
     starturl: 'home',
     menu: {
       template: 'dynamik',
@@ -207,7 +207,7 @@ export default {
     , 'https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js'],
     styles: ['/src/app/css/dynamik/index.css'],
   },
-  'localhost': {
+  'localhost_milma': {
     starturl: 'home',
     menu: {
       template: 'plain',
@@ -231,12 +231,13 @@ export default {
     footer: {
       template: 'plain',
     },
-    pageid: '1248',
+    pageid: '1274',
     scripts: ['/src/app/js/plain/index.js',
             '//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js'],
     styles: ['/src/app/css/plain/index.css'],
   },
-  'plain.dynamikfabrikken.com': {
+  // https://color.adobe.com/Plant-in-pots-color-theme-9869753/edit/?copy=true&base=2&rule=Custom&selected=3&name=Copy%20of%20Plant%20in%20pots&mode=rgb&rgbvalues=0.9333333333333333,0.48627450980392156,0.5098039215686274,0.9921568627450981,0.6431372549019608,0.4117647058823529,0.054901960784313725,0.1568627450980392,0.24705882352941178,0.27450980392156865,0.38823529411764707,0.45098039215686275,0.9568627450980393,0.9568627450980393,0.9490196078431372&swatchOrder=0,1,2,3,4
+  'localhost_produktet': {
     starturl: 'home',
     menu: {
       template: 'plain',
@@ -260,8 +261,9 @@ export default {
     footer: {
       template: 'plain',
     },
-    pageid: '1248',
-    scripts: ['/src/app/js/plain/index.js'],
+    pageid: '1274',
+    scripts: ['/src/app/js/plain/index.js',
+            '//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js'],
     styles: ['/src/app/css/plain/index.css'],
   },
   'other': {

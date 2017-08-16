@@ -1,4 +1,5 @@
 
+var pagename = "home";
 $(function(){
 
 setTimeout(function(){
@@ -20,9 +21,20 @@ setTimeout(function(){
   } );
 }, 2000);
 
+//navigation
+//$(document).on("click", "#backbtn", function (e) {
+//
+//  if (pagename == "home") {
+//  }
+//  else if (pagename == "digitalhaandvaerker") {
+//    $('.modal').modal('close');
+//    homefunction();
+//    history.pushState(null, null, '/home');
+//  }
+//});
 
-
-
+$(document).on("click", "#forwardbtn", function (e) {
+});
 
   $('.modal').modal({
     //  dismissible: true, // Modal can be dismissed by clicking outside of the modal
@@ -81,15 +93,31 @@ setTimeout(function(){
   var thinkbubble = $(".think");
   var thinkbubble1 = $(".think1");
   var talkbubble = $(".talk-bubble");
+  pagename = location.pathname.substring(location.pathname.lastIndexOf("/") + 1).toLowerCase();
 
-  setTimeout(function(){thinkbubble.addClass("show");},200);
-  setTimeout(function(){thinkbubble.removeClass("show");},4000);
-  setTimeout(function(){thinkbubble1.addClass("show");},4200);
-  setTimeout(function(){thinkbubble1.removeClass("show");},8000);
+  if (pagename == "home") {
+    homefunction();
+  }
+  else if (pagename == "dynamik") {
+    //dhfunction();
+    $('body').addClass('scrollpage');
+  }
+  //homefunction();
 
-  setTimeout(function(){
-    startspeak();
-  },8500);
+
+  function homefunction(){
+    setTimeout(function(){thinkbubble.addClass("show");},200);
+    setTimeout(function(){thinkbubble.removeClass("show");},4000);
+    setTimeout(function(){thinkbubble1.addClass("show");},4200);
+    setTimeout(function(){thinkbubble1.removeClass("show");},8000);
+    setTimeout(function(){startspeak();},8500);
+  }
+
+  function dhfunction(){
+    $('#modaldigitalhaandvaerker').modal('open');
+    $('header h1').css('zIndex', '9999999');
+  }
+
 
   function startspeak(){
     talkbubble.show();
@@ -127,7 +155,7 @@ setTimeout(function(){
 
   function sendformtoapi(form){
     d = "<div class='formthanks'><div class='formthankstext'>Et øjeblik.</div></div>";
-    form.closest(".modal").append(d);
+    form.closest("div").append(d);
 
     var formid = 1132
     var text = "";
@@ -135,13 +163,13 @@ setTimeout(function(){
       text += this.name + ": " + this.value + "<br/>"
     });
 
-    var postUrl = "http://umb.dynamikfabrikken.com/umbraco/api/formApi/SaveFormRequest?=" + formid + "&formcontent=" + text;
+    var postUrl = "http://umb.dynamikfabrikken.com/umbraco/api/formApi/SaveFormRequest?formid=" + formid + "&formcontent=" + text;
       $.getJSON(postUrl, function(data) {}).success(function(data) {
     }).error(function(d) {
       console.log("Error sending");
       console.log(d);
     }).success(function(d) {
-        form.closest(".modal").find(".formthankstext").html("Tak for henvendelse.<br/>Vi vender tilbage med svar så snart det er muligt.");
+        form.closest("div").find(".formthankstext").html("Tak for henvendelse.<br/>Vi vender tilbage med svar så snart det er muligt.");
     }).complete(function(d) {
     });
   }

@@ -1,4 +1,6 @@
 
+var apidomaine = "http://localhost:50947";
+
 var twoelm = "<article class='row'><div class='col s12 m6'>#elm1#</div><div class='col s12 m6'>#elm2#</div></article>";
 var oneelm = "<div class='row'><div class='col s12 m12'>#elm1#</div></div>";
 var oneelmcenter = "<div class='row'><div class='col s12 m12 center'>#elm1#</div></div>";
@@ -47,7 +49,7 @@ function renderRow(row, singleColumn) {
 }
 
 function initimage(imgid, id){
-  var postUrl = "http://localhost:50947/umbraco/api/contentApi/Getimagesrc/?imgid=" + imgid;
+  var postUrl = apidomaine + "/umbraco/api/contentApi/Getimagesrc/?imgid=" + imgid;
   $.getJSON(postUrl, function(data) {}).success(function(data) {
     if (data) {
       $("#" + id).attr("src", data.url).attr("alt", data.altText);
@@ -87,12 +89,14 @@ function editorview(contentItem) {
   var e = ""
   var type = contentItem.editor.alias;
 
-  var domainname = "http://localhost:50947";
-
   try {
     if (type == "rte") {
       // line 139 - TemplateUtilities.ParseInternalLinks not added
-      e += contentItem.value.replace("href\"/", "href=\"" + domainname + "/");
+
+      e+= "<a href='/kontakt'>Link to kontakt</a>";
+
+      e += contentItem.value.replace("href\"/", "href=\"" + apidomaine + "/");
+
     }
     else if (type == "ImageText"){
       var data = contentItem.value.macroParamsDictionary
@@ -137,7 +141,7 @@ function editorview(contentItem) {
     } else {
       // image
       if (contentItem.editor.name == "Image") {
-        e += "<img src='" + domainname + contentItem.value.image + "' alt='" + contentItem.value.altText + "' />";
+        e += "<img src='" + apidomaine + contentItem.value.image + "' alt='" + contentItem.value.altText + "' />";
       }
     }
   } catch (err) {
@@ -232,7 +236,7 @@ function buildlistofitems(nodeinfo, target, type) {
     nodeids = nodeinfo.Slider;
   }
 
-  var postUrl = "http://localhost:50947/umbraco/api/contentApi/GetListContent/?idlist=" + nodeids;
+  var postUrl = apidomaine + "/umbraco/api/contentApi/GetListContent/?idlist=" + nodeids;
   $.getJSON(postUrl, function(data) {}).success(function(data) {
     //add each card
     var li = data.data[0].nodelist;
@@ -301,12 +305,11 @@ function buildlistofitems(nodeinfo, target, type) {
 }
 
 //form handling
-
 function initform(forminfo, target){
 
   var f = "";
 
-  var postUrl = "http://localhost:50947/umbraco/api/contentApi/getform?formid=" + forminfo.formular;
+  var postUrl = apidomaine + "/umbraco/api/contentApi/getform?formid=" + forminfo.formular;
   $.getJSON(postUrl, function(data) {}).success(function(data) {
 
       // build form html
@@ -360,7 +363,7 @@ function sendformtoapi(form){
     text += this.name + ": " + this.value + "<br/>"
   });
 
-  var postUrl = "http://localhost:50947/umbraco/api/formApi/SaveFormRequest?=" + formid + "&formcontent=" + text;
+  var postUrl = apidomaine + "/umbraco/api/formApi/SaveFormRequest?=" + formid + "&formcontent=" + text;
   $.getJSON(postUrl, function(data) {}).success(function(data) {
 
   }).error(function() {
@@ -370,11 +373,11 @@ function sendformtoapi(form){
 
 
 }
-
 //form handling end
 
 //main function
-function buildcontenthtml(j) {
+function buildcontenthtml(j, domaine) {
+  apidomaine = domaine;
   var s = "<div>";
   if (j) {
     //if one col
