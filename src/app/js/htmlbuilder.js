@@ -93,7 +93,7 @@ function editorview(contentItem) {
     if (type == "rte") {
       // line 139 - TemplateUtilities.ParseInternalLinks not added
 
-      e+= "<a href='/kontakt'>Link to kontakt</a>";
+      //e+= "<a href='/kontakt'>Link to kontakt</a>";
 
       e += contentItem.value.replace("href\"/", "href=\"" + apidomaine + "/");
 

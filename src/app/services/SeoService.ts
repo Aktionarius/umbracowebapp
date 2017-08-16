@@ -8,9 +8,13 @@ import {ActivatedRoute} from "@angular/router";
 export class SeoService {
 
   private headElement:HTMLElement;
+  private htmlElement:HTMLElement;
+  private bodyElement:HTMLElement;
   private tags:IMetaTag[]=[];
   constructor( private titleService: Title){
     this.headElement = <HTMLElement>document.querySelector('head');
+    this.htmlElement = <HTMLElement>document.querySelector('html');
+    this.bodyElement = <HTMLElement>document.querySelector('body');
   }
 
   public getTitle(): string {
@@ -19,6 +23,22 @@ export class SeoService {
 
   public setTitle(newTitle: string) {
     this.titleService.setTitle(newTitle);
+  }
+
+  public setBeforeHead(content: string) {
+    console.log(content)
+    var script = this.createScript(content);
+    this.htmlElement.insertBefore(script, this.headElement)
+  }
+
+  public setBeforeBody(content: string) {
+    var script = this.createScript(content);
+    this.htmlElement.insertBefore(script, this.bodyElement)
+  }
+
+  public setAfterBody(content: string) {
+    var script = this.createScript(content);
+    this.htmlElement.insertBefore(script, this.bodyElement.nextSibling)
   }
 
   public setMetaElement(name:string, content:string) {
@@ -63,6 +83,13 @@ export class SeoService {
       this.headElement.insertBefore(el, this.headElement.firstChild);
     }
     return el;
+  }
+
+  private createScript(src: string) {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = src;
+    return script
   }
 
 }

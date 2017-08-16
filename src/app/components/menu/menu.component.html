@@ -1,5 +1,5 @@
 <div class="fixed-sidebar">
-  <header>
+  <header class="header">
     <img src="{{umbpagegeneral?.MainLogo}}" alt="{{umbpagegeneral?.CompanyName}}" />
   </header>
   <!-- add item class to ul - control btn with from numbers of items
@@ -7,9 +7,7 @@
   nothing - 2 items
     -->
   <ul>
-    <li><a (click)="onOpenNavbar('MENU')" [class.selected]="getClass() == 'MENU'"><i class="material-icons">&#xE5D2;</i><span>Menu</span></a></li>
-    <li><a (click)="onOpenNavbar('SEARCH')" [class.selected]="getClass() == 'SEARCH'"><i class="material-icons">&#xE8B6;</i><span>Search</span></a></li>
-    <li><a (click)="onOpenNavbar('MENU2')" data-activates="slide-out" class="button-collapse"><i class="material-icons">&#xE5D2;</i><span>Menu2</span></a></li>
+    <li><a (click)="is_menutab_opened = !is_menutab_opened" [class.selected]="getClass() == 'MENU'"><i class="material-icons">&#xE5D2;</i><span>Menu</span></a></li>
   </ul>
 </div>
 
@@ -18,10 +16,10 @@
   <menu-item [items]="menuItems" [isCollapsed]="is_menutab_opened" [selectItem]="selectItem"></menu-item>
 </nav>
 
-<nav class="sidenav" id="search_tab" [ngClass]="{'expanded': is_searchtab_opened, 'collapsed': !is_searchtab_opened}">
+<!--<nav class="sidenav" id="search_tab" [ngClass]="{'expanded': is_searchtab_opened, 'collapsed': !is_searchtab_opened}">
   <a class="closebtn" (click)="is_searchtab_opened = false">&times;</a>
   <menu-search></menu-search>
-</nav>
+</nav>-->
 
 <!--
   <div id="header-navbar" class="navbar-fixed">
