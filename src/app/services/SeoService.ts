@@ -88,7 +88,7 @@ export class SeoService {
   private createScript(src: string) {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src = src;
+    script.text = src;
     return script
   }
 
